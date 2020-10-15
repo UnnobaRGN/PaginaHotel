@@ -1,4 +1,4 @@
-package ar.edu.unnoba.poo2020.ProyectoMaven;
+package ar.edu.unnoba.poo2020.ProyectoMaven.service;
 
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;

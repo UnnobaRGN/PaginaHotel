@@ -1,4 +1,4 @@
-package ar.edu.unnoba.poo2020.ProyectoMaven;
+package ar.edu.unnoba.poo2020.ProyectoMaven.service;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
