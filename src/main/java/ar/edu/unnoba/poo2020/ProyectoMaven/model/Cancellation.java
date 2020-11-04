@@ -13,10 +13,10 @@ public class Cancellation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name="created_at")
+
     private Date createdAt;
 
-    @Column(name="booking")
+
     private Booking booking;
 
     public Long getId() {

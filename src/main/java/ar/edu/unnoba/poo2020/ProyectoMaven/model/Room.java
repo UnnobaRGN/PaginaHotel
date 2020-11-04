@@ -11,19 +11,19 @@ public class Room {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name="name")
+
     private String name;
 
-    @Column(name="price")
+
     private float price;
 
-    @Column(name="ocupancy")
+
     private int occupancy;
 
-    @Column(name="availability")
+
     private int availability;
 
-    @Column(name="facilites")
+
     private String facilities;
 
 

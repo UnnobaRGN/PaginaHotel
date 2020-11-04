@@ -1,3 +1,4 @@
+
 package ar.edu.unnoba.poo2020.ProyectoMaven.model;
 
 import javax.persistence.*;
@@ -12,19 +13,19 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name="first_name")
+
     private String firstName;
 
-    @Column(name="last_name")
+
     private String lastName;
 
-    @Column(name="email")
+
     private String email;
 
-    @Column(name="birth_date")
+
     private Date birthDate;
 
-    @Column(name="nationality")
+
     private String nationality;
 
 
