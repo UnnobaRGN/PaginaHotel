@@ -14,31 +14,31 @@ public class Booking {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "guest")
+
     private User guest;
 
-    @Column(name = "check_in")
+
     private Date checkIn;
 
-    @Column(name = "check_out")
+
     private Date checkOut;
 
-    @Column(name = "created_at")
+
     private Date createdAt;
 
-    @Column(name = "room")
+
     private Room room;
 
-    @Column(name = "breakfast_included")
-    private boolean breakfastInclude;
 
-    @Column(name = "parking")
+    private boolean breakfastIncluded;
+
+
     private boolean parking;
 
-    @Column(name = "free_cancelation")
+
     private boolean freeCancelation;
 
-    @Column(name = "cost")
+
     private Float cost;
 
 
@@ -93,12 +93,12 @@ public class Booking {
         this.room = room;
     }
 
-    public boolean isBreakfastInclude() {
-        return breakfastInclude;
+    public boolean isBreakfastIncluded() {
+        return breakfastIncluded;
     }
 
-    public void setBreakfastInclude(boolean breakfastInclude) {
-        this.breakfastInclude = breakfastInclude;
+    public void setBreakfastInclude(boolean breakfastIncluded) {
+        this.breakfastIncluded = breakfastIncluded;
     }
 
     public boolean isParking() {

@@ -22,7 +22,7 @@ public class Payment {
 
     private String card;
 
-    
+
     private String cardNumber;
 
     public Long getId() {
