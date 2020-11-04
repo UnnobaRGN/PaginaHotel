@@ -1,10 +1,11 @@
 package ar.edu.unnoba.poo2020.ProyectoMaven.model;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.sql.Date;
+
 
 @Entity
-@Table(name="user")
+@Table(name="User")
 public class User {
 
     @Id
