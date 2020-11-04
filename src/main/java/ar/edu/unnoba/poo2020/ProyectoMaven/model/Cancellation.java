@@ -1,12 +1,12 @@
 package ar.edu.unnoba.poo2020.ProyectoMaven.model;
 
-
 import javax.persistence.*;
 import java.sql.Date;
 
 @Entity
-@Table(name="Payment")
-public class Payment {
+@Table(name="Cancellation")
+
+public class Cancellation {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,12 +17,6 @@ public class Payment {
 
     @Column(name="booking")
     private Booking booking;
-
-    @Column(name="card")
-    private String card;
-
-    @Column(name="card_number")
-    private String cardNumber;
 
     public Long getId() {
         return id;
@@ -46,21 +40,5 @@ public class Payment {
 
     public void setBooking(Booking booking) {
         this.booking = booking;
-    }
-
-    public String getCard() {
-        return card;
-    }
-
-    public void setCard(String card) {
-        this.card = card;
-    }
-
-    public String getCardNumber() {
-        return cardNumber;
-    }
-
-    public void setCardNumber(String cardNumber) {
-        this.cardNumber = cardNumber;
     }
 }
