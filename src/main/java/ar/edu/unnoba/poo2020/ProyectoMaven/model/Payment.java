@@ -1,6 +1,8 @@
-/*
+
 package ar.edu.unnoba.poo2020.ProyectoMaven.model;
 
+
+import com.sun.istack.NotNull;
 
 import javax.persistence.*;
 import java.sql.Date;
@@ -17,8 +19,10 @@ public class Payment {
 
     private Date createdAt;
 
-    @OneToMany(mappedBy = "Payment")
-    private List<Booking> booking;
+    @NotNull
+    @OneToOne
+    @JoinColumn(name = "booking_id")
+    private Booking booking;
 
     private String card;
 
@@ -44,11 +48,11 @@ public class Payment {
         this.createdAt = createdAt;
     }
 
-    public List<Booking> getBooking() {
+    public Booking getBooking() {
         return booking;
     }
 
-    public void setBooking(List<Booking> booking) {
+    public void setBooking(Booking booking) {
         this.booking = booking;
     }
 
@@ -68,4 +72,3 @@ public class Payment {
         this.cardNumber = cardNumber;
     }
 }
-*/

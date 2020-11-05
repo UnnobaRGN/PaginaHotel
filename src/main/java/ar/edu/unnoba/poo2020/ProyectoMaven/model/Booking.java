@@ -18,8 +18,9 @@ public class Booking {
     private Long id;
 
     @NotNull
-    @OneToMany(mappedBy = "Booking")
-    private List<User> guest;
+    @ManyToOne
+    @JoinColumn(name="user_id")
+    private User guest;
 
     @NotNull
     private Date checkIn;
@@ -31,9 +32,14 @@ public class Booking {
     private Date createdAt;
 
     @NotNull
-    @ManyToOne
-    @JoinColumn(name = "room_id")
-    private Room room;
+    @OneToMany
+    @JoinColumn(name="booking_id")
+    private List<Room> room;
+
+   // @NotNull
+    //@OneToMany(mappedBy = "booking")
+  //  private List<Room> room;
+
 
     @NotNull
     private boolean breakfastIncluded;
@@ -45,7 +51,7 @@ public class Booking {
     private boolean freeCancelation;
 
 
-    private Float cost;
+    private float cost;
 
 
     //Getters y Setters
@@ -59,11 +65,11 @@ public class Booking {
         this.id = id;
     }
 
-    public List<User> getGuest() {
+    public User getGuest() {
         return guest;
     }
 
-    public void setGuest(List<User> guest) {
+    public void setGuest(User guest) {
         this.guest = guest;
     }
 
@@ -91,11 +97,11 @@ public class Booking {
         this.createdAt = createdAt;
     }
 
-    public Room getRoom() {
+    public List<Room> getRoom() {
         return room;
     }
 
-    public void setRoom(Room room) {
+    public void setRoom(List<Room> room) {
         this.room = room;
     }
 
@@ -123,11 +129,11 @@ public class Booking {
         this.freeCancelation = freeCancelation;
     }
 
-    public Float getCost() {
+    public float getCost() {
         return cost;
     }
 
-    public void setCost(Float cost) {
+    public void setCost(float cost) {
         this.cost = cost;
     }
 }
