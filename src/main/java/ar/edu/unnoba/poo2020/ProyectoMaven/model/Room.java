@@ -27,6 +27,9 @@ public class Room {
     private String facilities;
 
 
+    //Getters y Setters
+
+
     public Long getId() {
         return id;
     }

@@ -4,9 +4,10 @@ package ar.edu.unnoba.poo2020.ProyectoMaven.model;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.List;
 
 @Entity
-@Table(name="Payment")
+@Table(name="Payments")
 public class Payment {
 
     @Id
@@ -16,14 +17,16 @@ public class Payment {
 
     private Date createdAt;
 
-
-    private Booking booking;
-
+    @OneToMany(mappedBy = "payment")
+    private List<Booking> booking;
 
     private String card;
 
-
     private String cardNumber;
+
+
+    //Getters y Setters
+
 
     public Long getId() {
         return id;

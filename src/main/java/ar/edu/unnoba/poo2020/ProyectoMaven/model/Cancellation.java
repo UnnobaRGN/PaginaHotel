@@ -3,9 +3,10 @@ package ar.edu.unnoba.poo2020.ProyectoMaven.model;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.List;
 
 @Entity
-@Table(name="Cancellation")
+@Table(name="Cancellations")
 
 public class Cancellation {
 
@@ -16,8 +17,12 @@ public class Cancellation {
 
     private Date createdAt;
 
+    @OneToMany(mappedBy = "cancelattion")
+    private List<Booking> booking;
 
-    private Booking booking;
+
+    //Getters y Setters
+
 
     public Long getId() {
         return id;

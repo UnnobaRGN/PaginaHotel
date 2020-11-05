@@ -2,11 +2,14 @@
 
 package ar.edu.unnoba.poo2020.ProyectoMaven.model;
 
+import com.sun.istack.NotNull;
+
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.List;
 
 @Entity
-@Table(name="Booking")
+@Table(name="Bookings")
 public class Booking {
 
 
@@ -14,28 +17,31 @@ public class Booking {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotNull
+    @OneToMany(mappedBy = "booking")
+    private List<User> guest;
 
-    private User guest;
-
-
+    @NotNull
     private Date checkIn;
 
-
+    @NotNull
     private Date checkOut;
 
-
+    @NotNull
     private Date createdAt;
 
-
+    @NotNull
+    @ManyToOne
+    @JoinColumn(name = "room_id")
     private Room room;
 
-
+    @NotNull
     private boolean breakfastIncluded;
 
-
+    @NotNull
     private boolean parking;
 
-
+    @NotNull
     private boolean freeCancelation;
 
 

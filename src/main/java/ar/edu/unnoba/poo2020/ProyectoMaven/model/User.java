@@ -1,6 +1,8 @@
 
 package ar.edu.unnoba.poo2020.ProyectoMaven.model;
 
+import com.sun.istack.NotNull;
+
 import javax.persistence.*;
 import java.sql.Date;
 
@@ -13,23 +15,25 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-
+    @NotNull
     private String firstName;
 
-
+    @NotNull
     private String lastName;
 
-
+    @Column(unique = true)
+    @NotNull
     private String email;
 
-
+    @NotNull
     private Date birthDate;
 
-
+    @NotNull
     private String nationality;
 
 
     //Getters and Setters
+
 
     public Long getId() {
         return id;
