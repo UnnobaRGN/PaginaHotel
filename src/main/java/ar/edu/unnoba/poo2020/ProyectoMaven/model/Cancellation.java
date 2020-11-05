@@ -1,4 +1,4 @@
-
+/*
 package ar.edu.unnoba.poo2020.ProyectoMaven.model;
 
 import javax.persistence.*;
@@ -17,7 +17,7 @@ public class Cancellation {
 
     private Date createdAt;
 
-    @OneToMany(mappedBy = "cancelattion")
+    @OneToMany(mappedBy = "Cancellation")
     private List<Booking> booking;
 
 
@@ -40,11 +40,12 @@ public class Cancellation {
         this.createdAt = createdAt;
     }
 
-    public Booking getBooking() {
+    public List<Booking> getBooking() {
         return booking;
     }
 
-    public void setBooking(Booking booking) {
+    public void setBooking(List<Booking> booking) {
         this.booking = booking;
     }
 }
+*/

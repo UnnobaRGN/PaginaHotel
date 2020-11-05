@@ -18,7 +18,7 @@ public class Booking {
     private Long id;
 
     @NotNull
-    @OneToMany(mappedBy = "booking")
+    @OneToMany(mappedBy = "Booking")
     private List<User> guest;
 
     @NotNull
@@ -59,11 +59,11 @@ public class Booking {
         this.id = id;
     }
 
-    public User getGuest() {
+    public List<User> getGuest() {
         return guest;
     }
 
-    public void setGuest(User guest) {
+    public void setGuest(List<User> guest) {
         this.guest = guest;
     }
 
@@ -103,7 +103,7 @@ public class Booking {
         return breakfastIncluded;
     }
 
-    public void setBreakfastInclude(boolean breakfastIncluded) {
+    public void setBreakfastIncluded(boolean breakfastIncluded) {
         this.breakfastIncluded = breakfastIncluded;
     }
 
@@ -130,6 +130,4 @@ public class Booking {
     public void setCost(Float cost) {
         this.cost = cost;
     }
-
-
 }

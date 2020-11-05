@@ -4,7 +4,7 @@ package ar.edu.unnoba.poo2020.ProyectoMaven.model;
 import javax.persistence.*;
 
 @Entity
-@Table(name="Room")
+@Table(name="Rooms")
 public class Room {
 
     @Id

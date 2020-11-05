@@ -1,4 +1,4 @@
-
+/*
 package ar.edu.unnoba.poo2020.ProyectoMaven.model;
 
 
@@ -17,7 +17,7 @@ public class Payment {
 
     private Date createdAt;
 
-    @OneToMany(mappedBy = "payment")
+    @OneToMany(mappedBy = "Payment")
     private List<Booking> booking;
 
     private String card;
@@ -44,11 +44,11 @@ public class Payment {
         this.createdAt = createdAt;
     }
 
-    public Booking getBooking() {
+    public List<Booking> getBooking() {
         return booking;
     }
 
-    public void setBooking(Booking booking) {
+    public void setBooking(List<Booking> booking) {
         this.booking = booking;
     }
 
@@ -68,3 +68,4 @@ public class Payment {
         this.cardNumber = cardNumber;
     }
 }
+*/
