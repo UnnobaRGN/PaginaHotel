@@ -32,13 +32,13 @@ public class Booking {
     private Date createdAt;
 
     @NotNull
-    @OneToMany
-    @JoinColumn(name="booking_id")
-    private List<Room> room;
+    @ManyToOne                         //TAMBIEN PUEDE SER MANYTOMANY!!!!!!!!!!!
+    @JoinColumn(name="room_id")
+    private Room room;
 
-   // @NotNull
+      //@NotNull
     //@OneToMany(mappedBy = "booking")
-  //  private List<Room> room;
+  // private List<Room> room;
 
 
     @NotNull
@@ -97,11 +97,11 @@ public class Booking {
         this.createdAt = createdAt;
     }
 
-    public List<Room> getRoom() {
+    public Room getRoom() {
         return room;
     }
 
-    public void setRoom(List<Room> room) {
+    public void setRoom(Room room) {
         this.room = room;
     }
 
