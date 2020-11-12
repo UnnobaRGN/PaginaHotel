@@ -1,4 +1,4 @@
-/*package ar.edu.unnoba.poo2020.ProyectoMaven.controller;
+package ar.edu.unnoba.poo2020.ProyectoMaven.controller;
 
 import ar.edu.unnoba.poo2020.ProyectoMaven.model.User;
 import ar.edu.unnoba.poo2020.ProyectoMaven.service.IUserService;
@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/user")
+@RequestMapping("/Users")
 public class UserController {
 
     private IUserService userService;
@@ -27,7 +27,7 @@ public class UserController {
     public String userNew(Model model){
 
         model.addAttribute("user", new User());
-        return "user/new";
+        return "Users/new";
 
     }
 
@@ -35,10 +35,10 @@ public class UserController {
     public String create(@ModelAttribute User user){
 
         userService.create(user);
-        return "redirect:/user";
+        return "redirect:/Users";
 
     }
 
 }
 
- */
+

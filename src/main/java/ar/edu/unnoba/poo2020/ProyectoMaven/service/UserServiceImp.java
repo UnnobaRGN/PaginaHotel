@@ -1,10 +1,12 @@
-/*
+
 package ar.edu.unnoba.poo2020.ProyectoMaven.service;
 
 import ar.edu.unnoba.poo2020.ProyectoMaven.model.User;
 import ar.edu.unnoba.poo2020.ProyectoMaven.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class UserServiceImp implements  IUserService{
 
     @Autowired
@@ -13,7 +15,7 @@ public class UserServiceImp implements  IUserService{
     @Override
     public User create(User user){
 
-        if (repository.findByUserName(user.getEmail())==null){
+        if (repository.findByEmail(user.getEmail())==null){
             user = repository.save(user);
         }
         return user;
@@ -22,4 +24,3 @@ public class UserServiceImp implements  IUserService{
 
 }
 
- */
