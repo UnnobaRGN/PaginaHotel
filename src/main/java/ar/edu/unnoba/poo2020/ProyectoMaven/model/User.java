@@ -31,6 +31,8 @@ public class User {
     @NotNull
     private String nationality;
 
+    @NotNull
+    private String passWord;
 
     //Getters and Setters
 
@@ -81,5 +83,13 @@ public class User {
 
     public void setNationality(String nationality) {
         this.nationality = nationality;
+    }
+
+    public String getPassWord() {
+        return passWord;
+    }
+
+    public void setPassWord(String passWord) {
+        this.passWord = passWord;
     }
 }
