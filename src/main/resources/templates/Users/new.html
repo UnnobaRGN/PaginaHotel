@@ -1,37 +1,41 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-    <div>New User</div>
-    <form action="#" th:action="@{/Users}" th:object="${user}" method="post">
-        Nombre:
-        <input type="text" th:field="*{firstName}"/>
-        <br/>
-        <br/>
-        Apellido:
-        <input type="text" th:field="*{lastName}">
-         <br/>
-        <br/>
-         Email:
-        <input type="email" th:field="*{email}">
-        <br/>
-        <br/>
-        Fecha de nacimiento:
-        <input type="date" th:field="*{birthDate}">
-        <br/>
-        <br/>
-        Nacionalidad:
-        <input type="text" th:field="*{nationality}">
-        <br/>
-        <br/>
-        Contraseña:
-        <input type="password" th:field="*{passWord}">
-        <br/>
-        <br/>
-        <button type="submit" name="newUser">Create</button>
-</form>
-</body>
+    <head>
+        <meta charset="UTF-8">
+        <title>Crear tu cuenta de HotelPOO</title>
+    </head>
+
+    <body style="background-color:#DCE775";>
+        <h1 align="center" >Crear tu cuenta de HotelPOO</h1>
+        <div align="center" style="background:#558B2F">
+            <form action="#" th:action="@{/Users}" th:object="${user}" method="post">
+                Nombre:
+                <input type="text" th:field="*{firstName}"/>
+                <br/>
+                <br/>
+                Apellido:
+                <input type="text" th:field="*{lastName}">
+                 <br/>
+                <br/>
+                 Email:
+                <input type="email" th:field="*{email}">
+                <br/>
+                <br/>
+                Fecha de nacimiento:
+                <input type="date" th:field="*{birthDate}">
+                <br/>
+                <br/>
+                Nacionalidad:
+                <input type="text" th:field="*{nationality}">
+                <br/>
+                <br/>
+                Contraseña:
+                <input type="password" th:field="*{passWord}">
+                <br/>
+                <br/>
+                <button type="submit" name="newUser">Create</button>
+            </form>
+        </div>
+    </body>
+
 </html>
