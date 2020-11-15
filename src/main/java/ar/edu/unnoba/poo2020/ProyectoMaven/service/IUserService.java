@@ -7,8 +7,9 @@ import org.springframework.stereotype.Service;
 
 public interface IUserService {
 
-    public User create(User user);
+    //public User create(User user);
 
+    public boolean create(User user);
 }
 
 

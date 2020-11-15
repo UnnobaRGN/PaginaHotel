@@ -12,7 +12,7 @@ public class UserServiceImp implements  IUserService{
     @Autowired
     private UserRepository repository;
 
-    @Override
+   /* @Override
     public User create(User user){
 
         if (repository.findByEmail(user.getEmail())==null){
@@ -21,6 +21,18 @@ public class UserServiceImp implements  IUserService{
         return user;
 
     }
+*/
+    @Override
+    public boolean create(User user){
 
+        if (repository.findByEmail(user.getEmail())==null){
+            user = repository.save(user);
+            return true;
+        }else{
+            return false;
+        }
+
+
+    }
 }
 

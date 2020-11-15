@@ -30,13 +30,26 @@ public class UserController {
         return "Users/new";
 
     }
+   /* @PostMapping
+    public String create(@ModelAttribute User user) {
+        userService.create(user);
+        return "redirect:/Users";
+    }
+    */
 
     @PostMapping
     public String create(@ModelAttribute User user){
+        if(userService.create(user)) {
+            return "redirect:/Users/bienvenido";
+        }else{
+            return "redirect:/Users/new";
+        }
+    }
 
-        userService.create(user);
-        return "redirect:/Users";
-
+    @GetMapping("/bienvenido")
+    public String userBienvenido(Model model){
+        model.addAttribute("user", new User());
+        return "Users/bienvenido";
     }
 
 }
