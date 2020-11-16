@@ -25,7 +25,6 @@ public class UserController {
 
     @GetMapping("/new")
     public String userNew(Model model){
-
         model.addAttribute("user", new User());
         return "Users/new";
 
@@ -40,16 +39,16 @@ public class UserController {
     @PostMapping
     public String create(@ModelAttribute User user){
         if(userService.create(user)) {
-            return "redirect:/Users/bienvenido";
+            return "redirect:/Users";
         }else{
             return "redirect:/Users/new";
         }
     }
 
-    @GetMapping("/bienvenido")
+    @GetMapping
     public String userBienvenido(Model model){
         model.addAttribute("user", new User());
-        return "Users/bienvenido";
+        return "Users/index";
     }
 
 }
