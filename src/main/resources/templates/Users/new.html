@@ -10,30 +10,33 @@
         <div align="center" style="background:#558B2F">
             <form action="#" th:action="@{/Users}" th:object="${user}" method="post">
                 Nombre:
-                <input type="text" th:field="*{firstName}"/>
+                <input type="text" required th:field="*{firstName}"/>
                 <br/>
                 <br/>
                 Apellido:
-                <input type="text" th:field="*{lastName}">
+                <input type="text"  required th:field="*{lastName}">
                  <br/>
                 <br/>
                  Email:
-                <input type="email" th:field="*{email}">
+                <input type="email" required th:field="*{email}">
                 <br/>
                 <br/>
                 Fecha de nacimiento:
-                <input type="date" th:field="*{birthDate}">
+                <input type="date" required th:field="*{birthDate}">
                 <br/>
                 <br/>
                 Nacionalidad:
-                <input type="text" th:field="*{nationality}">
+                <input type="text" required th:field="*{nationality}">
                 <br/>
                 <br/>
                 Contraseña:
-                <input type="password" th:field="*{password}">
+                <input type="password" required th:field="*{password}">
                 <br/>
                 <br/>
                 <button type="submit" name="newUser">Create</button>
+                <br>
+                <h2 th:text="${texto}" id="texto"></h2>
+                <br>
             </form>
         </div>
     </body>

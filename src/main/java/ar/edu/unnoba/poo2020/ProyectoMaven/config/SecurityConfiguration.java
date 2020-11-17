@@ -1,6 +1,7 @@
 package ar.edu.unnoba.poo2020.ProyectoMaven.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -14,6 +15,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
+
     @Autowired
     public UserDetailsService userDetailsService;
 
@@ -25,11 +27,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/","/Users/new").permitAll()
+                .antMatchers("/","/Users/new","/login").permitAll()
                 .antMatchers(HttpMethod.POST,"/Users").permitAll()
                 .and().formLogin();
         http.authorizeRequests()
-                .antMatchers("/**")
+                .antMatchers("/*", "/*/*")
                 .access("hasRole('ROLE_USER')");
     }
 
