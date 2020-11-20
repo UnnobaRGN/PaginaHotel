@@ -37,16 +37,6 @@ public class UserController {
     }
 
 
-
-
-
-    @PostMapping("/logout")
-    public String salidaUser(Model model, Authentication auth){
-
-        return "/";
-
-    }
-
    /* @PostMapping
     public String create(@ModelAttribute User user) {
         userService.create(user);
