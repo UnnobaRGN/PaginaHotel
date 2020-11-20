@@ -28,15 +28,15 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/","/Users/new","/login","/index").permitAll()
+                .antMatchers("/","/Users/new","/login","/index","/style.css").permitAll()
                 .antMatchers(HttpMethod.POST,"/Users").permitAll()
                 .and()
                 .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/")
                 .and()
                 .formLogin();
         http.authorizeRequests()
-             .antMatchers("/*", "/*/*")
-              .access("hasRole('ROLE_USER')");
+                .antMatchers("/*?")
+                .access("hasRole('ROLE_USER')");
 
 
     }
