@@ -35,6 +35,18 @@ public class UserController {
         return "Users/new";
 
     }
+
+
+
+
+
+    @GetMapping("/logout")
+    public String salidaUser(Model model, Authentication auth){
+
+        return "/";
+
+    }
+
    /* @PostMapping
     public String create(@ModelAttribute User user) {
         userService.create(user);
