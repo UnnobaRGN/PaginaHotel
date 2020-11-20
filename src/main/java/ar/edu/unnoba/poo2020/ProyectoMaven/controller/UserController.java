@@ -40,7 +40,7 @@ public class UserController {
 
 
 
-    @GetMapping("/logout")
+    @PostMapping("/logout")
     public String salidaUser(Model model, Authentication auth){
 
         return "/";
