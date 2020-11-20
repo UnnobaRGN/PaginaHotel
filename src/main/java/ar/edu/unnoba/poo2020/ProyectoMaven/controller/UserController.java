@@ -65,7 +65,7 @@ public class UserController {
             model.addAttribute("firstName", u.getFirstName());
             model.addAttribute("lastName", u.getLastName());
         }
-        return "Users/index";
+        return "/Users/index";
     }
 
 }
