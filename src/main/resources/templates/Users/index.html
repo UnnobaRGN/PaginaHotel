@@ -7,68 +7,70 @@
 
 
     <!--FONT OSWALD-->
-
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400&display=swap');
+    </style>
     <!--CUSTOM CSS-->
     <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
 
-<div class="container">
-    <nav class="nav-main">
-        <img src="img/logo.jpg" alt="logo-hotel" class="nav-brand">
-        <ul class="nav-menu">
+    <div class="container">
+        <nav class="nav-main">
+            <img src="img/logo.jpg" alt="logo-hotel" class="nav-brand">
+            <ul class="nav-menu">
 
-            <li>
-                <a href="/Users">
-                    Inicio
-                </a>
-            </li>
-            <li>
-                <a href="/Bookings/availability">
-                    Reservar habitacion
-                </a>
-            </li>
+                <li>
+                    <a href="/Users">
+                        Inicio
+                    </a>
+                </li>
+                <li>
+                    <a href="/Bookings/availability">
+                        Reservar habitacion
+                    </a>
+                </li>
 
-            <li>
-                <a href="#">
-                    Nuestras habitaciones
-                </a>
-            </li>
+                <li>
+                    <a href="#">
+                        Nuestras habitaciones
+                    </a>
+                </li>
 
-            <li>
-                <a href="#">
-                    Quienes somos
-                </a>
-            </li>
+                <li>
+                    <a href="#">
+                        Quienes somos
+                    </a>
+                </li>
 
-        </ul>
+            </ul>
 
-        <ul class="nav-regis">
+            <ul class="nav-regis">
 
-            <li>
-                <a><label   id="Users" th:text ="${firstName} + ' ' + ${lastName}" > </label></a>
+                <li>
+                    <a><label   id="Users" th:text ="${firstName} + ' ' + ${lastName}" > </label></a>
 
-            </li>
-            <li>
-                <a href="/logout" methods="post" th:action="@{/logout}">
-                    Logout
-                </a>
-            </li>
-        </ul>
+                </li>
+                <li>
+                    <a href="/logout" methods="post" th:action="@{/logout}">
+                        Logout
+                    </a>
+                </li>
+            </ul>
 
 
-    </nav>
+        </nav>
 
-    <header class="showcase">
-        <h2 HOTEL RG>
-            <p>
-                Hoteleria de primera.
-            </p>
-        </h2>
-    </header>
+        <header class="showcase">
+            <h2 HOTEL RG>
+                <p>
+                    Hoteleria de primera.
+                </p>
+            </h2>
+        </header>
 
-</div>
+    </div>
 
 </body>
 

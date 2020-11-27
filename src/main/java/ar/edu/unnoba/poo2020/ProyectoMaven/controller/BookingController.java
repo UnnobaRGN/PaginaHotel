@@ -3,12 +3,14 @@ package ar.edu.unnoba.poo2020.ProyectoMaven.controller;
 import ar.edu.unnoba.poo2020.ProyectoMaven.DTO.RoomDTO;
 import ar.edu.unnoba.poo2020.ProyectoMaven.DTO.RoomsAvailabilityDTO;
 import ar.edu.unnoba.poo2020.ProyectoMaven.model.Room;
+import ar.edu.unnoba.poo2020.ProyectoMaven.model.User;
 import ar.edu.unnoba.poo2020.ProyectoMaven.service.IBookingService;
 import ar.edu.unnoba.poo2020.ProyectoMaven.service.IRoomService;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -35,9 +37,14 @@ public class BookingController {
     }
 
     @GetMapping("/availability")
-    public String roomsAvailability(Model model){
+    public String roomsAvailability(Model model, Authentication auth){
         model.addAttribute("roomsAvailability", new RoomsAvailabilityDTO());
         model.addAttribute("rooms",new ArrayList<RoomDTO>());
+        if(auth != null) {
+            User u = (User) auth.getPrincipal();
+            model.addAttribute("firstName", u.getFirstName());
+            model.addAttribute("lastName", u.getLastName());
+        }
         return "Bookings/availability";
     }
 

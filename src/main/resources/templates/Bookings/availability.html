@@ -2,47 +2,96 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Reserva tu habitacion</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 </head>
 <body>
-    <div>Rooms Availability</div>
-    <form action="#" th:action="@{/Bookings/availability}" th:object="${roomsAvailability}" method="post">
-        <label>Check In</label>
-        <input type="date" th:field="*{checkIn}"/>
-        <label>Check Out</label>
-        <input type="date" th:field="*{checkOut}"/>
-        <label>Occupancy</label>
-        <input type="text" th:field="*{occupancy}"/>
-        <button type="submit" name="availability">Check Availability</button>
-    </form>
+    <div class="container">
+        <nav class="nav-main">
+            <img src="img/logo.jpg" alt="logo-hotel" class="nav-brand">
+            <ul class="nav-menu">
 
-    <table>
-        <thead>
-        <tr>
-            <th>Room</th>
-            <th>Occupancy</th>
-            <th>Facilities</th>
-            <th>Price</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:if="${rooms.empty}">
-            <td colspan="4"> No Rooms Available</td>
-        </tr>
-        <tr th:each="room: ${rooms}">
-            <td><span th:text="${room.name}">Room </span></td>
-            <td><span th:text="${room.occupancy}">Occupancy</span></td>
-            <td><span th:text="${room.facilities}">Facilities</span></td>
-            <td><span th:text="${room.price}">Price</span></td>
-            <td>
-                Book
-            </td>
-        </tr>
+                <li>
+                    <a href="/Users">
+                        Inicio
+                    </a>
+                </li>
+                <li>
+                    <a href="/Bookings/availability">
+                        Reservar habitacion
+                    </a>
+                </li>
 
-        </tbody>
-    </table>
+                <li>
+                    <a href="#">
+                        Nuestras habitaciones
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#">
+                        Quienes somos
+                    </a>
+                </li>
+
+            </ul>
+
+            <ul class="nav-regis">
+
+                <li>
+                    <a><label   id="Users" th:text ="${firstName} + ' ' + ${lastName}" > </label></a>
+
+                </li>
+                <li>
+                    <a href="/logout" methods="post" th:action="@{/logout}">
+                        Logout
+                    </a>
+                </li>
+            </ul>
+
+
+        </nav>
+
+        <header class="showcase">
+            <div>Rooms Availability</div>
+            <form action="#" th:action="@{/Bookings/availability}" th:object="${roomsAvailability}" method="post">
+                <label>Check In</label>
+                <input type="date" th:field="*{checkIn}"/>
+                <label>Check Out</label>
+                <input type="date" th:field="*{checkOut}"/>
+                <label>Occupancy</label>
+                <input type="text" th:field="*{occupancy}"/>
+                <button type="submit" name="availability">Check Availability</button>
+            </form>
+
+            <table>
+                <thead>
+                <tr>
+                    <th>Room</th>
+                    <th>Occupancy</th>
+                    <th>Facilities</th>
+                    <th>Price</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <tr th:if="${rooms.empty}">
+                        <td colspan="4"> No Rooms Available</td>
+                    </tr>
+                    <tr th:each="room: ${rooms}">
+                        <td><span th:text="${room.name}">Room </span></td>
+                        <td><span th:text="${room.occupancy}">Occupancy</span></td>
+                        <td><span th:text="${room.facilities}">Facilities</span></td>
+                        <td><span th:text="${room.price}">Price</span></td>
+                        <td>
+                            Book
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </header>
+    </div>
 </body>
 
 </html>
