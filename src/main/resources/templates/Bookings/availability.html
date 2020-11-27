@@ -5,6 +5,11 @@
     <title>Reserva tu habitacion</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <!--FONT OSWALD-->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400&display=swap');
+    </style>
+
     <!--CUSTOM CSS-->
     <link rel="stylesheet" href="css/style.css">
 </head>
@@ -55,44 +60,50 @@
 
         </nav>
 
-        <header class="showcase">
-            <div>Rooms Availability</div>
-            <form action="#" th:action="@{/Bookings/availability}" th:object="${roomsAvailability}" method="post">
-                <label>Check In</label>
-                <input type="date" th:field="*{checkIn}"/>
-                <label>Check Out</label>
-                <input type="date" th:field="*{checkOut}"/>
-                <label>Occupancy</label>
-                <input type="text" th:field="*{occupancy}"/>
-                <button type="submit" name="availability">Check Availability</button>
-            </form>
+            <div class="titulo">
+                <h1 class="tit">Rooms Availability</h1>
+                <br>
+                <form id="form1" name="form1" action="#" th:action="@{/Bookings/availability}" th:object="${roomsAvailability}" method="post">
+                    <label id="lbl1" name="lbl1">Check In</label>
+                    <input id="txt1" name="txt1" type="date" th:field="*{checkIn}"/>
 
-            <table>
-                <thead>
-                <tr>
-                    <th>Room</th>
-                    <th>Occupancy</th>
-                    <th>Facilities</th>
-                    <th>Price</th>
-                </tr>
-                </thead>
-                <tbody>
-                    <tr th:if="${rooms.empty}">
-                        <td colspan="4"> No Rooms Available</td>
-                    </tr>
-                    <tr th:each="room: ${rooms}">
-                        <td><span th:text="${room.name}">Room </span></td>
-                        <td><span th:text="${room.occupancy}">Occupancy</span></td>
-                        <td><span th:text="${room.facilities}">Facilities</span></td>
-                        <td><span th:text="${room.price}">Price</span></td>
-                        <td>
-                            Book
-                        </td>
-                    </tr>
+                    <label id="lbl2" name="lbl2">Check Out</label>
+                    <input id="txt2" name="txt2" type="date" th:field="*{checkOut}"/>
 
-                </tbody>
-            </table>
-        </header>
+                    <label id="lbl3" name="lbl3">Occupancy</label>
+                    <input id="txt3" name="txt3" type="text" th:field="*{occupancy}"/>
+
+                    <button type="submit" id="btnSubmit" name="btnSubmit">Check Availability</button>
+                </form>
+
+                <br>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Room</th>
+                            <th>Occupancy</th>
+                            <th>Facilities</th>
+                            <th>Price</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:if="${rooms.empty}">
+                            <td colspan="4"> No Rooms Available</td>
+                        </tr>
+                        <tr th:each="room: ${rooms}">
+                            <td><span th:text="${room.name}">Room </span></td>
+                            <td><span th:text="${room.occupancy}">Occupancy</span></td>
+                            <td><span th:text="${room.facilities}">Facilities</span></td>
+                            <td><span th:text="${room.price}">Price</span></td>
+                            <td>
+                                <button type="submit" id="btnBook" name="btnBook">Book</button>
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
     </div>
 </body>
 
