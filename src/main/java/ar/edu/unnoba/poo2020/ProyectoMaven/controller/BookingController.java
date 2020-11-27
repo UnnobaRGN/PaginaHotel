@@ -5,8 +5,10 @@ import ar.edu.unnoba.poo2020.ProyectoMaven.DTO.RoomsAvailabilityDTO;
 import ar.edu.unnoba.poo2020.ProyectoMaven.model.Room;
 import ar.edu.unnoba.poo2020.ProyectoMaven.service.IBookingService;
 import ar.edu.unnoba.poo2020.ProyectoMaven.service.IRoomService;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,17 +21,17 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Controller
-@RequestMapping("/bookings")
+@RequestMapping("/Bookings")
 public class BookingController {
     private IRoomService roomService;
     private IBookingService bookingService;
     private ModelMapper modelMapper;
 
     @Autowired
-    public BookingController(IRoomService roomService, IBookingService bookingService) {
+    public BookingController(IRoomService roomService, IBookingService bookingService,ModelMapper modelMapper) {
         this.roomService = roomService;
         this.bookingService = bookingService;
-
+        this.modelMapper = modelMapper;
     }
 
     @GetMapping("/availability")
