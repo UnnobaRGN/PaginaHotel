@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+</head>
+<body>
+    <div>Rooms Availability</div>
+    <form action="#" th:action="@{/Bookings/availability}" th:object="${roomsAvailability}" method="post">
+        <label>Check In</label>
+        <input type="date" th:field="*{checkIn}"/>
+        <label>Check Out</label>
+        <input type="date" th:field="*{checkOut}"/>
+        <label>Occupancy</label>
+        <input type="text" th:field="*{occupancy}"/>
+        <button type="submit" name="availability">Check Availability</button>
+    </form>
+
+    <table>
+        <thead>
+        <tr>
+            <th>Room</th>
+            <th>Occupancy</th>
+            <th>Facilities</th>
+            <th>Price</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:if="${rooms.empty}">
+            <td colspan="4"> No Rooms Available</td>
+        </tr>
+        <tr th:each="room: ${rooms}">
+            <td><span th:text="${room.name}">Room </span></td>
+            <td><span th:text="${room.occupancy}">Occupancy</span></td>
+            <td><span th:text="${room.facilities}">Facilities</span></td>
+            <td><span th:text="${room.price}">Price</span></td>
+            <td>
+                Book
+            </td>
+        </tr>
+
+        </tbody>
+    </table>
+</body>
+
+</html>
