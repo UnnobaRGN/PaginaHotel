@@ -1,9 +1,7 @@
 package ar.edu.unnoba.poo2020.ProyectoMaven.controller;
 
-import ar.edu.unnoba.poo2020.ProyectoMaven.DTO.NewBookingRequestDTO;
-import ar.edu.unnoba.poo2020.ProyectoMaven.DTO.NewBookingResponseDTO;
-import ar.edu.unnoba.poo2020.ProyectoMaven.DTO.RoomDTO;
-import ar.edu.unnoba.poo2020.ProyectoMaven.DTO.RoomsAvailabilityDTO;
+import ar.edu.unnoba.poo2020.ProyectoMaven.DTO.*;
+import ar.edu.unnoba.poo2020.ProyectoMaven.model.Booking;
 import ar.edu.unnoba.poo2020.ProyectoMaven.model.Room;
 import ar.edu.unnoba.poo2020.ProyectoMaven.model.User;
 import ar.edu.unnoba.poo2020.ProyectoMaven.service.IBookingService;
@@ -51,7 +49,7 @@ public class BookingController {
     }
 
     @PostMapping("/availability")
-    public String getRoomsAvailable(@ModelAttribute RoomsAvailabilityDTO roomsAvailabilityDTO, Model model){
+    public String getRoomsAvailable(@ModelAttribute RoomsAvailabilityDTO roomsAvailabilityDTO, Model model,Authentication auth){
         List<Room> rooms=new ArrayList<>();
         try {
             rooms = roomService.getRoomsAvailable(
@@ -63,6 +61,11 @@ public class BookingController {
         List<RoomDTO> roomDTO = rooms.stream()
                 .map(room -> modelMapper.map(room,RoomDTO.class))
                 .collect(Collectors.toList());
+        if(auth != null) {
+            User u = (User) auth.getPrincipal();
+            model.addAttribute("firstName", u.getFirstName());
+            model.addAttribute("lastName", u.getLastName());
+        }
         model.addAttribute("rooms",roomDTO);
         model.addAttribute("roomsAvailability",roomsAvailabilityDTO);
         model.addAttribute("Booking", new NewBookingRequestDTO());
@@ -79,6 +82,22 @@ public class BookingController {
         booking.setOccupancy(newBookingRequestDTO.getOccupancy());
         model.addAttribute("Booking",booking);
         return "Bookings/new";
+    }
+
+    @PostMapping("/confirm")
+    public String confirmBooking(@ModelAttribute ConfirmBookingRequestDTO confirmBookingRequestDTO, Model model,Authentication auth) throws Exception {
+        //Convertir DTO a un objeto de modelo
+        Booking booking = modelMapper.map(confirmBookingRequestDTO, Booking.class);
+        booking.setGuest((User) auth.getPrincipal());
+        booking.setId(null);
+        //delegacion de confirmacion a un servicio y en funcion de la respuesta redireciconar
+        try{
+            bookingService.newBooking(booking);
+            return "Bookings/confirmed";
+        }catch (Exception e){
+            return "Bookings/availability";
+        }
+
     }
 
 }

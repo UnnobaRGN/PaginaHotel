@@ -14,4 +14,8 @@ public interface RoomRepository extends JpaRepository<Room,Long> {
             "SELECT COUNT(b) FROM Booking b WHERE b.room = r and b.checkIn between :checkIn and :checkOut) ORDER BY (r.occupancy)")
 
     List<Room> getRoomsAvailable(@Param("checkIn") Date checkIn, @Param("checkOut") Date checkOut, @Param("occupancy") int occupancy);
+
+    @Query("Select r From Room r where r.id = :roomId and r.availability > (" +
+            "Select count(b) From Booking b where b.room = r and b.checkIn between :checkIn and :checkOut)")
+    Room isRoomAvailable(@Param("checkIn")Date checkIn, @Param("checkOut") Date checkOut, @Param("roomId") Long roomId);
 }
