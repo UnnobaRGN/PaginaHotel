@@ -11,12 +11,12 @@
     </style>
 
     <!--CUSTOM CSS-->
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="../Bookings/css/style.css">
 </head>
 <body>
     <div class="container">
         <nav class="nav-main">
-            <img src="img/logo.jpg" alt="logo-hotel" class="nav-brand">
+            <img src="../Bookings/img/logo.jpg" alt="logo-hotel" class="nav-brand">
             <ul class="nav-menu">
 
                 <li>
@@ -65,13 +65,13 @@
                 <br>
                 <form id="form1" name="form1" action="#" th:action="@{/Bookings/availability}" th:object="${roomsAvailability}" method="post">
                     <label id="lbl1" name="lbl1">Check In</label>
-                    <input id="txt1" name="txt1" type="date" th:field="*{checkIn}"/>
+                    <input id="txt1" required name="txt1" type="date" th:field="*{checkIn}"/>
 
-                    <label id="lbl2" name="lbl2">Check Out</label>
-                    <input id="txt2" name="txt2" type="date" th:field="*{checkOut}"/>
+                    <label id="lbl2"  name="lbl2">Check Out</label>
+                    <input id="txt2" required name="txt2" type="date" th:field="*{checkOut}"/>
 
                     <label id="lbl3" name="lbl3">Occupancy</label>
-                    <input id="txt3" name="txt3" type="text" th:field="*{occupancy}"/>
+                    <input id="txt3" required name="txt3" type="text" th:field="*{occupancy}"/>
 
                     <button type="submit" id="btnSubmit" name="btnSubmit">Check Availability</button>
                 </form>
@@ -97,7 +97,13 @@
                             <td><span th:text="${room.facilities}">Facilities</span></td>
                             <td><span th:text="${room.price}">Price</span></td>
                             <td>
-                                <button type="submit" id="btnBook" name="btnBook">Book</button>
+                                <form action="#" th:action="@{/Bookings/new}" th:object="${Booking}" method="post">
+                                    <input type="hidden" th:name="checkIn" th:value="${roomsAvailability.checkIn}"/>
+                                    <input type="hidden" th:name="checkOut" th:value="${roomsAvailability.checkOut}"/>
+                                    <input type="hidden" th:name="occupancy" th:value="${roomsAvailability.occupancy}"/>
+                                    <input type="hidden" th:name="roomId" th:value="${room.id}"/>
+                                    <button type="submit" name="btnBook">Book</button>
+                                </form>
                             </td>
                         </tr>
 

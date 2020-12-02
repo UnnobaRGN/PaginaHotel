@@ -1,5 +1,7 @@
 package ar.edu.unnoba.poo2020.ProyectoMaven.controller;
 
+import ar.edu.unnoba.poo2020.ProyectoMaven.DTO.NewBookingRequestDTO;
+import ar.edu.unnoba.poo2020.ProyectoMaven.DTO.NewBookingResponseDTO;
 import ar.edu.unnoba.poo2020.ProyectoMaven.DTO.RoomDTO;
 import ar.edu.unnoba.poo2020.ProyectoMaven.DTO.RoomsAvailabilityDTO;
 import ar.edu.unnoba.poo2020.ProyectoMaven.model.Room;
@@ -63,7 +65,20 @@ public class BookingController {
                 .collect(Collectors.toList());
         model.addAttribute("rooms",roomDTO);
         model.addAttribute("roomsAvailability",roomsAvailabilityDTO);
+        model.addAttribute("Booking", new NewBookingRequestDTO());
         return "Bookings/availability";
+    }
+
+    @PostMapping("/new")
+    public String newBooking(@ModelAttribute NewBookingRequestDTO newBookingRequestDTO, NewBookingResponseDTO newBookingResponseDTO,Model model){
+        NewBookingResponseDTO booking = new NewBookingResponseDTO();
+        RoomDTO roomDTO = modelMapper.map(roomService.findby(newBookingRequestDTO.getRoomId()).get(), RoomDTO.class);
+        booking.setRoomDTO(roomDTO);
+        booking.setCheckIn(newBookingRequestDTO.getCheckIn());
+        booking.setCheckOut(newBookingRequestDTO.getCheckOut());
+        booking.setOccupancy(newBookingRequestDTO.getOccupancy());
+        model.addAttribute("Booking",booking);
+        return "Bookings/new";
     }
 
 }
