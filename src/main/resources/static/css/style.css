@@ -85,6 +85,21 @@ ul{
 }
 
 
+/*availability*/
+.titulo{
+    background-color: grey;
+}
+
+.tabla{
+    border-collapse: separate;
+    border-spacing: 15px;
+    text-align: center;
+}
+
+.tit{
+    text-decoration: underline beige;
+}
+
 
 
 

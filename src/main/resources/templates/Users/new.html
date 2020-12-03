@@ -1,44 +1,83 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-    <head>
-        <meta charset="UTF-8">
-        <title>Crear tu cuenta de HotelPOO</title>
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <title>Crear tu cuenta de HotelPOO</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400&display=swap');
+    </style>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
 
-    <body style="background-color:#DCE775";>
-        <h1 align="center" >Crear tu cuenta de HotelPOO</h1>
-        <div align="center" style="background:#558B2F">
-            <form action="#" th:action="@{/Users}" th:object="${user}" method="post">
-                Nombre:
-                <input type="text" required th:field="*{firstName}"/>
-                <br/>
-                <br/>
-                Apellido:
-                <input type="text"  required th:field="*{lastName}">
-                 <br/>
-                <br/>
-                 Email:
-                <input type="email" required th:field="*{email}">
-                <br/>
-                <br/>
-                Fecha de nacimiento:
-                <input type="date" required th:field="*{birthDate}">
-                <br/>
-                <br/>
-                Nacionalidad:
-                <input type="text" required th:field="*{nationality}">
-                <br/>
-                <br/>
-                Contraseña:
-                <input type="password" required th:field="*{password}">
-                <br/>
-                <br/>
-                <button type="submit" name="newUser">Create</button>
+<body>
+        <div class="container">
+            <nav class="nav-main">
+                <a href="/Users">
+                    <img src="../img/logo.jpg" alt="logo-hotel" class="nav-brand">
+                </a>
+                <ul class="nav-menu">
+
+                    <li>
+                        <a href="/Bookings/availability">
+                            Reservar habitacion
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#">
+                            Nuestras habitaciones
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#">
+                            Quienes somos
+                        </a>
+                    </li>
+
+                </ul>
+
+                
+            </nav>
+
+            <div class="titulo">
                 <br>
-                <h2 th:text="${texto}" id="texto"></h2>
-                <br>
-            </form>
+            <h1 align="center" >Crear tu cuenta de HotelPOO</h1>
+                <div align="center">
+                    <form action="#" th:action="@{/Users}" th:object="${user}" method="post">
+                        Nombre:
+                        <input type="text" required th:field="*{firstName}"/>
+                        <br/>
+                        <br/>
+                        Apellido:
+                        <input type="text"  required th:field="*{lastName}">
+                         <br/>
+                        <br/>
+                         Email:
+                        <input type="email" required th:field="*{email}">
+                        <br/>
+                        <br/>
+                        Fecha de nacimiento:
+                        <input type="date" required th:field="*{birthDate}">
+                        <br/>
+                        <br/>
+                        Nacionalidad:
+                        <input type="text" required th:field="*{nationality}">
+                        <br/>
+                        <br/>
+                        Contraseña:
+                        <input type="password" required th:field="*{password}">
+                        <br/>
+                        <br/>
+                        <button type="submit" class="btn btn-success">Create</button>
+                        <br>
+                        <h2 th:text="${texto}" id="texto"></h2>
+                        <br>
+                    </form>
+                </div>
+            </div>
         </div>
-    </body>
+</body>
 
 </html>

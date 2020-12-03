@@ -11,6 +11,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.security.core.Authentication;
+import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -73,13 +74,18 @@ public class BookingController {
     }
 
     @PostMapping("/new")
-    public String newBooking(@ModelAttribute NewBookingRequestDTO newBookingRequestDTO, NewBookingResponseDTO newBookingResponseDTO,Model model){
+    public String newBooking(@ModelAttribute NewBookingRequestDTO newBookingRequestDTO, NewBookingResponseDTO newBookingResponseDTO, Model model, Authentication auth){
         NewBookingResponseDTO booking = new NewBookingResponseDTO();
         RoomDTO roomDTO = modelMapper.map(roomService.findby(newBookingRequestDTO.getRoomId()).get(), RoomDTO.class);
         booking.setRoomDTO(roomDTO);
         booking.setCheckIn(newBookingRequestDTO.getCheckIn());
         booking.setCheckOut(newBookingRequestDTO.getCheckOut());
         booking.setOccupancy(newBookingRequestDTO.getOccupancy());
+        if(auth != null) {
+            User u = (User) auth.getPrincipal();
+            model.addAttribute("firstName", u.getFirstName());
+            model.addAttribute("lastName", u.getLastName());
+        }
         model.addAttribute("Booking",booking);
         return "Bookings/new";
     }
@@ -92,6 +98,9 @@ public class BookingController {
         booking.setId(null);
         //delegacion de confirmacion a un servicio y en funcion de la respuesta redireciconar
         try{
+            User u = (User) auth.getPrincipal();
+            model.addAttribute("firstName", u.getFirstName());
+            model.addAttribute("lastName", u.getLastName());
             bookingService.newBooking(booking);
             return "Bookings/confirmed";
         }catch (Exception e){

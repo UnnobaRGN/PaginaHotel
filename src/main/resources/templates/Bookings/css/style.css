@@ -109,9 +109,6 @@ tr:hover td{
     color: white;
 }
 
-
-
-
-
-
-
+.titulo{
+    background-color: grey;
+}
