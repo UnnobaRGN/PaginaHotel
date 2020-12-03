@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <title>Reserva tu habitacion</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
 
     <!--FONT OSWALD-->
     <style>
@@ -11,7 +13,7 @@
     </style>
 </head>
 <body>
-        <div>
+        <div align="center">
             <h2>New Booking</h2>
             <p>
                 <label>Room</label>: <span th:text="${Booking.getRoomDTO().name}"></span>
@@ -28,7 +30,7 @@
                 <input type="hidden" th:field="${Booking.checkOut}"/>
                 <input type="hidden" th:field="${Booking.occupancy}"/>
                 <input type="hidden" th:name="roomId" th:value="${Booking.getRoomDTO().id}"/>
-                <button type="submit" name="confirm">Confirm Booking</button>
+                     <button type="submit" class="btn btn-success">Confirm Booking</button>
                  </form>
         </div>
 </body>
