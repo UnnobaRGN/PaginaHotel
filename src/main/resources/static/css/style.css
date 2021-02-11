@@ -49,6 +49,9 @@ ul{
 
 .nav-main ul li a:hover{
     border-bottom: 2px solid whitesmoke;
+    color: #ffffff;
+    outline: none;
+    text-decoration: none;
 }
 
 .nav-main ul.nav-menu{
