@@ -57,27 +57,35 @@
 
 
             </nav>
-            <div style="background-color: grey; text-align: center; height:350px">
+            <div style="background-color: grey; text-align: center; height:450px">
                 <br>
-            <h1 style="text-decoration: underline beige; font-size:2.5rem">New Booking</h1>
-            <p>
-                <label>Room</label>: <span th:text="${Booking.getRoomDTO().name}"></span>
-            </p>
-            <p>
-                <label>CheckIn</label>: <span th:text="${Booking.checkIn}"></span>
-            </p>
-                <label>CheckOut</label>: <span th:text="${Booking.checkOut}"></span>
-            <p>
-                <label>Occupancy</label>: <span th:text="${Booking.occupancy}"></span>
-            </p>
-                 <form action="#" th:action="@{/Bookings/confirm}" th:object="${Booking}" method="post">
-                <input type="hidden" th:field="${Booking.checkIn}"/>
-                <input type="hidden" th:field="${Booking.checkOut}"/>
-                <input type="hidden" th:field="${Booking.occupancy}"/>
-                <input type="hidden" th:name="roomId" th:value="${Booking.getRoomDTO().id}"/>
-                     <button type="submit" class="btn btn-success">Confirm Booking</button>
-                 </form>
-            <br>
+                <h1 style="text-decoration: underline beige; font-size:2.5rem">New Booking</h1>
+                <p>
+                    <label>Room</label>: <span th:text="${Booking.getRoomDTO().name}"></span>
+                </p>
+                <p>
+                    <label>CheckIn</label>: <span th:text="${Booking.checkIn}"></span>
+                </p>
+                    <label>CheckOut</label>: <span th:text="${Booking.checkOut}"></span>
+                <p>
+                    <label>Occupancy</label>: <span th:text="${Booking.occupancy}"></span>
+                </p>
+                     <form action="#" th:action="@{/Bookings/confirm}" th:object="${Booking}" method="post">
+                    <input type="hidden" th:field="${Booking.checkIn}"/>
+                    <input type="hidden" th:field="${Booking.checkOut}"/>
+                    <input type="hidden" th:field="${Booking.occupancy}"/>
+                    <input type="hidden" th:name="roomId" th:value="${Booking.getRoomDTO().id}"/>
+                         <h2>Desea alguna de estas opciones?</h2>
+                         <input type="checkbox" name="Desayuno"/>
+                         <label>Desayuno(100$)</label>
+                         <input type="checkbox" name="Cochera"/>
+                         <label>Cochera(300$)</label>
+                         <input type="checkbox" name="Cancelacion"/>
+                         <label>Cancelacion Gratis(200$)</label>
+                         <br>
+                         <button type="submit" class="btn btn-success">Siguiente</button>
+                     </form>
+                <br>
             </div>
         </div>
 </body>

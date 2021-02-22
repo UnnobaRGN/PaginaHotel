@@ -21,7 +21,7 @@ public class BookingServiceImp implements IBookingService{
     @Override
     public Booking newBooking(Booking booking) throws Exception {
         booking.setRoom(roomRepository.findById(booking.getRoom().getId()).get());
-        booking.setCost(booking.getRoom().getPrice());
+        booking.setCost(calcularCostoTotal(booking));
         booking.setCreatedAt(new Date());
          if(booking.getCheckIn().before(new Date()) || booking.getCheckIn().after(booking.getCheckOut())){
              throw new Exception("");
@@ -32,5 +32,18 @@ public class BookingServiceImp implements IBookingService{
          }else{
              throw new Exception("");
          }
+    }
+    public float calcularCostoTotal(Booking booking){
+        float total=booking.getRoom().getPrice() ;
+        if(booking.isBreakfastIncluded()){
+            total+=100;
+        }
+        if(booking.isFreeCancelation()){
+            total+=200;
+        }
+        if(booking.isParking()){
+            total+=300;
+        }
+        return total;
     }
 }

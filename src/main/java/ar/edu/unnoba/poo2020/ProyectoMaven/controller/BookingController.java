@@ -14,10 +14,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -91,11 +88,20 @@ public class BookingController {
     }
 
     @PostMapping("/confirm")
-    public String confirmBooking(@ModelAttribute ConfirmBookingRequestDTO confirmBookingRequestDTO, Model model,Authentication auth) throws Exception {
+    public String confirmBooking(@ModelAttribute ConfirmBookingRequestDTO confirmBookingRequestDTO, Model model, Authentication auth, @RequestParam(value="Desayuno",required = false) String checkboxDesayuno, @RequestParam(value="Cochera",required = false) String checkboxCochera, @RequestParam(value="Cancelacion",required = false) String checkboxCancelacionGratis) throws Exception {
         //Convertir DTO a un objeto de modelo
         Booking booking = modelMapper.map(confirmBookingRequestDTO, Booking.class);
         booking.setGuest((User) auth.getPrincipal());
         booking.setId(null);
+        if(checkboxDesayuno!=null) {
+            booking.setBreakfastIncluded(true);
+        }
+        if(checkboxCochera!=null){
+            booking.setParking(true);
+        }
+        if(checkboxCancelacionGratis!=null){
+            booking.setFreeCancelation(true);
+        }
         //delegacion de confirmacion a un servicio y en funcion de la respuesta redireciconar
         try{
             User u = (User) auth.getPrincipal();
