@@ -93,7 +93,7 @@
                             <td><span th:text="${room.name}">Room </span></td>
                             <td><span th:text="${room.occupancy}">Occupancy</span></td>
                             <td><span th:text="${room.facilities}">Facilities</span></td>
-                            <td><span th:text="${room.price}">Price</span></td>
+                            <td><span th:text="${room.price}+'$'">Price</span></td>
                             <td>
                                 <form action="#" th:action="@{/Bookings/new}" th:object="${Booking}" method="post">
                                     <input type="hidden" th:name="checkIn" th:value="${roomsAvailability.checkIn}"/>
