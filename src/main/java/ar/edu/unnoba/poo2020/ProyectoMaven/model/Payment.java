@@ -5,8 +5,8 @@ package ar.edu.unnoba.poo2020.ProyectoMaven.model;
 import com.sun.istack.NotNull;
 
 import javax.persistence.*;
-import java.sql.Date;
-import java.util.List;
+import java.util.Date;
+
 
 @Entity
 @Table(name="Payments")
@@ -17,7 +17,7 @@ public class Payment {
     private Long id;
 
 
-    private Date createdAt;
+    private Date createdAt; //borrar tablas e iniciar de vuelta el programa
 
     @NotNull
     @OneToOne

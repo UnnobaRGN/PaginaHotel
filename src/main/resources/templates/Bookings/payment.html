@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Reserva tu habitacion</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!--FONT OSWALD-->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400&display=swap');
+    </style>
+    <link rel="stylesheet" href="../css/style.css">
+
+</head>
+
+<body>
+
+<div class="container">
+    <nav class="nav-main">
+        <a href="/Users">
+            <img src="../img/logo.jpg" alt="logo-hotel" class="nav-brand">
+        </a>
+        <ul class="nav-menu">
+
+            <li>
+                <a href="/Bookings/availability">
+                    Reservar habitacion
+                </a>
+            </li>
+
+            <li>
+                <a href="#">
+                    Nuestras habitaciones
+                </a>
+            </li>
+
+            <li>
+                <a href="#">
+                    Quienes somos
+                </a>
+            </li>
+
+        </ul>
+
+        <ul class="nav-regis">
+
+            <li>
+                <a><label   id="Users" th:text ="${firstName} + ' ' + ${lastName}" > </label></a>
+
+            </li>
+            <li>
+                <a href="/logout" methods="post" th:action="@{/logout}">
+                    Logout
+                </a>
+            </li>
+        </ul>
+
+    </nav>
+    <div class="titulo">
+
+        <br>
+        <h2 align="center" >Por favor, ingrese los datos de su tarjeta</h2>
+        <div align="center">
+            <form action="#" th:action="@{/Bookings/pago}" th:object="${payment}" method="post">
+                <div class="form-group">
+                    Tarjeta (Mastercard,Visa,etc):
+                    <input type="text" required th:field="*{card}" class="form-control col-sm-3"/>
+                </div>
+                <div class="form-group">
+                    Numero de tarjeta
+                    <input type="number"  required th:field="*{cardNumber}" class="form-control col-sm-3">
+                </div>
+                <button type="submit" class="btn btn-success">Confirmar pago</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

@@ -2,9 +2,11 @@ package ar.edu.unnoba.poo2020.ProyectoMaven.controller;
 
 import ar.edu.unnoba.poo2020.ProyectoMaven.DTO.*;
 import ar.edu.unnoba.poo2020.ProyectoMaven.model.Booking;
+import ar.edu.unnoba.poo2020.ProyectoMaven.model.Payment;
 import ar.edu.unnoba.poo2020.ProyectoMaven.model.Room;
 import ar.edu.unnoba.poo2020.ProyectoMaven.model.User;
 import ar.edu.unnoba.poo2020.ProyectoMaven.service.IBookingService;
+import ar.edu.unnoba.poo2020.ProyectoMaven.service.IPaymentService;
 import ar.edu.unnoba.poo2020.ProyectoMaven.service.IRoomService;
 
 import org.modelmapper.ModelMapper;
@@ -22,16 +24,19 @@ import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/Bookings")
+@SessionAttributes("Booking2")
 public class BookingController {
     private IRoomService roomService;
     private IBookingService bookingService;
     private ModelMapper modelMapper;
+    private IPaymentService paymentService;
 
     @Autowired
-    public BookingController(IRoomService roomService, IBookingService bookingService,ModelMapper modelMapper) {
+    public BookingController(IRoomService roomService, IBookingService bookingService,ModelMapper modelMapper,IPaymentService paymentService) {
         this.roomService = roomService;
         this.bookingService = bookingService;
         this.modelMapper = modelMapper;
+        this.paymentService = paymentService;
     }
 
     @GetMapping("/availability")
@@ -71,7 +76,7 @@ public class BookingController {
     }
 
     @PostMapping("/new")
-    public String newBooking(@ModelAttribute NewBookingRequestDTO newBookingRequestDTO, NewBookingResponseDTO newBookingResponseDTO, Model model, Authentication auth){
+    public String newBooking(@ModelAttribute NewBookingRequestDTO newBookingRequestDTO, Model model, Authentication auth){
         NewBookingResponseDTO booking = new NewBookingResponseDTO();
         RoomDTO roomDTO = modelMapper.map(roomService.findby(newBookingRequestDTO.getRoomId()).get(), RoomDTO.class);
         booking.setRoomDTO(roomDTO);
@@ -107,12 +112,28 @@ public class BookingController {
             User u = (User) auth.getPrincipal();
             model.addAttribute("firstName", u.getFirstName());
             model.addAttribute("lastName", u.getLastName());
-            bookingService.newBooking(booking);
-            return "Bookings/confirmed";
+            model.addAttribute("Booking2",booking);
+            model.addAttribute("payment",new PaymentDTO());
+            return "Bookings/payment";
         }catch (Exception e){
             return "Bookings/availability";
         }
 
+    }
+
+    @PostMapping("/pago")
+    public String realizarPago(@ModelAttribute PaymentDTO paymentDTO, Model model, @ModelAttribute("Booking2")Booking booking,Authentication auth) throws Exception {
+        Booking booking1 = bookingService.newBooking(booking);
+        paymentDTO.setIdbooking(booking1.getId());
+        Payment p = modelMapper.map(paymentDTO, Payment.class);
+        p.setBooking(booking1);
+        paymentService.savePayment(p);
+        if(auth != null) {
+            User u = (User) auth.getPrincipal();
+            model.addAttribute("firstName", u.getFirstName());
+            model.addAttribute("lastName", u.getLastName());
+        }
+        return "Bookings/confirmed";
     }
 
 }

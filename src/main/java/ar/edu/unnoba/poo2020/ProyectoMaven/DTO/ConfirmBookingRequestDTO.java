@@ -10,6 +10,9 @@ public class ConfirmBookingRequestDTO {
     private String checkIn;
     private String checkOut;
     private int occupancy;
+    private boolean desayuno;
+    private boolean cochera;
+    private boolean cancelarGratis;
     // tener en cuenta para el final: desayuno, cochera,cancelacion
     private static final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
@@ -58,6 +61,27 @@ public class ConfirmBookingRequestDTO {
     }
 
 
+    public boolean isDesayuno() {
+        return desayuno;
+    }
 
+    public void setDesayuno(boolean desayuno) {
+        this.desayuno = desayuno;
+    }
 
+    public boolean isCochera() {
+        return cochera;
+    }
+
+    public void setCochera(boolean cochera) {
+        this.cochera = cochera;
+    }
+
+    public boolean isCancelarGratis() {
+        return cancelarGratis;
+    }
+
+    public void setCancelarGratis(boolean cancelarGratis) {
+        this.cancelarGratis = cancelarGratis;
+    }
 }

@@ -57,7 +57,7 @@
 
 
             </nav>
-            <div style="background-color: grey; text-align: center; height:450px">
+            <div style="background-color: grey; text-align: center; height:500px">
                 <br>
                 <h1 style="text-decoration: underline beige; font-size:2.5rem">New Booking</h1>
                 <p>
@@ -78,7 +78,7 @@
                     <input type="hidden" th:field="${Booking.checkOut}"/>
                     <input type="hidden" th:field="${Booking.occupancy}"/>
                     <input type="hidden" th:name="roomId" th:value="${Booking.getRoomDTO().id}"/>
-                         <h2>Desea alguna de estas opciones?</h2>
+                         <h2>Desea algun servicio adicional?</h2>
                          <input type="checkbox" name="Desayuno"/>
                          <label>Desayuno(100$)</label>
                          <input type="checkbox" name="Cochera"/>
@@ -87,7 +87,9 @@
                          <label>Cancelacion Gratis(200$)</label>
                          <br>
                          <button type="submit" class="btn btn-success">Siguiente</button>
+                         <a href="/Users" class="btn btn-primary" >Cancelar Reserva</a>
                      </form>
+
                 <br>
             </div>
         </div>
