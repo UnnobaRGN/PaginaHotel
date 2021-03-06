@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.List;
 
 @Service
 public class BookingServiceImp implements IBookingService{
@@ -33,6 +34,12 @@ public class BookingServiceImp implements IBookingService{
              throw new Exception("");
          }
     }
+
+    @Override
+    public List<Booking> listarReservas(Long id) {
+        return bookingRepository.getBookingById(id);
+    }
+
     public float calcularCostoTotal(Booking booking){
         float total=booking.getRoom().getPrice() ;
         if(booking.isBreakfastIncluded()){

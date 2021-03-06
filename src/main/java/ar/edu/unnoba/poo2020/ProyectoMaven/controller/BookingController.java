@@ -136,4 +136,16 @@ public class BookingController {
         return "Bookings/confirmed";
     }
 
+    @GetMapping("/ConsultaReservas")
+    public String consultarReservas(Model model,Authentication auth){
+        if(auth != null) {
+            User u = (User) auth.getPrincipal();
+            model.addAttribute("firstName", u.getFirstName());
+            model.addAttribute("lastName", u.getLastName());
+            List<Booking> Reservabookings = bookingService.listarReservas(u.getId());
+            model.addAttribute("listaReservas",Reservabookings);
+        }
+        return "Bookings/consultarReserva";
+    }
+
 }
