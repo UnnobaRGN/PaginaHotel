@@ -10,7 +10,7 @@ import java.util.Date;
 import java.util.List;
 
 public interface BookingRepository extends JpaRepository<Booking,Long> {
-    @Query("SELECT b From Booking b WHERE b.guest.id= :Id")
+    @Query("SELECT b From Booking b WHERE b.guest.id= :Id ORDER BY b.checkIn DESC")
     List<Booking> getBookingById(@Param("Id") Long id);
 
 
