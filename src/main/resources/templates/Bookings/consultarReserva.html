@@ -62,7 +62,25 @@
         </nav>
     </div>
 
-
+    <div>
+        <table class="tabla">
+            <thead>
+            <tr>
+                <th>Check In: </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:if="${listaReservas.empty}">
+                <td colspan="4">No hay reservas echas!</td>
+            </tr>
+            <tr th:each="reservas: ${listaReservas}">
+                <td><span th:text="${reservas.checkIn}">Check in: </span></td>
+                <button type="submit" class="btn btn-info">Detalle</button>
+                <button type="submit" class="btn btn-danger">Cancelar</button>
+            </tr>
+            </tbody>
+        </table>
+    </div>
 
 
 
