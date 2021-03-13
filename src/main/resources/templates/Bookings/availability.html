@@ -65,20 +65,20 @@
 
             <div  align="center"  >
                 <br>
-                <h1 class="tit">Rooms Availability</h1>
+                <h1 class="tit">Disponibilidad de Habitaciones</h1>
                 <br>
                 <form id="form1" name="form1" action="#" th:action="@{/Bookings/availability}" th:object="${roomsAvailability}" method="post">
 
-                    <label id="lbl1" name="lbl1">Check In</label>
+                    <label id="lbl1" name="lbl1">Check in:</label>
                     <input id="txt1" required name="txt1" type="date" th:field="*{checkIn}"/>
 
-                    <label id="lbl2"  name="lbl2">Check Out</label>
+                    <label id="lbl2"  name="lbl2">Check out:</label>
                     <input id="txt2" required name="txt2" type="date" th:field="*{checkOut}"/>
 
-                    <label id="lbl3" name="lbl3">Occupancy</label>
+                    <label id="lbl3" name="lbl3">Ocupacion:</label>
                     <input id="txt3" required name="txt3" type="number" min="1" max="4" th:field="*{occupancy}"/>
 
-                    <button type="submit" class="btn btn-primary">Check Availability</button>
+                    <button type="submit" class="btn btn-primary">Chequear disponibilidad</button>
                 </form>
 
                 <br>
@@ -107,7 +107,7 @@
                                         <input type="hidden" th:name="checkOut" th:value="${roomsAvailability.checkOut}"/>
                                         <input type="hidden" th:name="occupancy" th:value="${roomsAvailability.occupancy}"/>
                                         <input type="hidden" th:name="roomId" th:value="${room.id}"/>
-                                        <button type="submit" class="btn btn-info">Book</button>
+                                        <button type="submit" class="btn btn-info">Reservar</button>
                                     </form>
                                 </td>
                             </tr>
