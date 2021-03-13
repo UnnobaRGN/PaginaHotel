@@ -5,6 +5,7 @@
     <title>Reserva tu habitacion</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
     <!--FONT OSWALD-->
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400&display=swap');
@@ -70,7 +71,7 @@
                 <form id="form1" name="form1" action="#" th:action="@{/Bookings/availability}" th:object="${roomsAvailability}" method="post">
 
                     <label id="lbl1" name="lbl1">Check in:</label>
-                    <input id="txt1" required name="txt1" type="date" th:field="*{checkIn}"/>
+                    <input id="date" required name="date" type="date" th:field="*{checkIn}"/>
 
                     <label id="lbl2"  name="lbl2">Check out:</label>
                     <input id="txt2" required name="txt2" type="date" th:field="*{checkOut}"/>

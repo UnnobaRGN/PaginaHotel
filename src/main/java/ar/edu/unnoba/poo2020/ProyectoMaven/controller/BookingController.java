@@ -123,17 +123,26 @@ public class BookingController {
 
     @PostMapping("/pago")
     public String realizarPago(@ModelAttribute PaymentDTO paymentDTO, Model model, @ModelAttribute("Booking2")Booking booking,Authentication auth) throws Exception {
-        Booking booking1 = bookingService.newBooking(booking);
-        paymentDTO.setIdbooking(booking1.getId());
-        Payment p = modelMapper.map(paymentDTO, Payment.class);
-        p.setBooking(booking1);
-        paymentService.savePayment(p);
-        if(auth != null) {
-            User u = (User) auth.getPrincipal();
-            model.addAttribute("firstName", u.getFirstName());
-            model.addAttribute("lastName", u.getLastName());
+        try {
+            Booking booking1 = bookingService.newBooking(booking);
+            paymentDTO.setIdbooking(booking1.getId());
+            Payment p = modelMapper.map(paymentDTO, Payment.class);
+            p.setBooking(booking1);
+            paymentService.savePayment(p);
+            if(auth != null) {
+                User u = (User) auth.getPrincipal();
+                model.addAttribute("firstName", u.getFirstName());
+                model.addAttribute("lastName", u.getLastName());
+            }
+            return "Bookings/confirmed";
+        }catch (Exception e){
+            if(auth != null) {
+                User u = (User) auth.getPrincipal();
+                model.addAttribute("firstName", u.getFirstName());
+                model.addAttribute("lastName", u.getLastName());
+            }
+            return "error/index";
         }
-        return "Bookings/confirmed";
     }
 
     @GetMapping("/ConsultaReservas")
