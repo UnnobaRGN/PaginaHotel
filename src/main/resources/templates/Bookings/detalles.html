@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Mis Reservas</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+
+    <!--FONT OSWALD-->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400&display=swap');
+    </style>
+    <!--CUSTOM CSS-->
+    <link rel="stylesheet" href="../../css/style.css">
+</head>
+<body>
+<nav class="nav-main">
+    <a href="/Users">
+        <img src="../../img/logo.jpg" alt="logo-hotel" class="nav-brand">
+    </a>
+    <ul class="nav-menu">
+
+        <li>
+            <a href="/Bookings/availability">
+                Reservar habitacion
+            </a>
+        </li>
+
+        <li>
+            <a href="#">
+                Nuestras habitaciones
+            </a>
+        </li>
+
+        <li>
+            <a href="#">
+                Quienes somos
+            </a>
+        </li>
+        <li>
+            <a href="/Bookings/ConsultaReservas">
+                Consultá tus reservas!
+            </a>
+        </li>
+
+    </ul>
+
+    <ul class="nav-regis">
+
+        <li>
+            <a><label   id="Users" th:text ="${firstName} + ' ' + ${lastName}" > </label></a>
+
+        </li>
+        <li>
+            <a href="/logout" methods="post" th:action="@{/logout}">
+                Logout
+            </a>
+        </li>
+    </ul>
+</nav>
+
+
+<div align="center" >
+    <br>
+    <h1 class="tit">Detalle</h1>
+    <div class="container mt-4">
+        <table class="table table-bordered table-dark table-sm">
+            <thead>
+            <tr>
+                <th>Habitacion</th>
+                <th>Precio</th>
+                <th>Desayuno</th>
+                <th>Cancelacion Free</th>
+                <th>Estacionamiento</th>
+                <th>Check In</th>
+                <th>Check Out</th>
+                <th>Creada</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:object="${BookingDetalles}">
+                <td th:text="${BookingDetalles.getRoom().getName()}">Nombre</td>
+                <td th:text="${BookingDetalles.getCost()}">Costo</td>
+                <div th:if="${BookingDetalles.isBreakfastIncluded()}">
+                    <td>Si</td>
+                </div>
+                <div th:unless="${BookingDetalles.isBreakfastIncluded()}">
+                    <td>No </td>
+                </div>
+                <div th:if="${BookingDetalles.isFreeCancelation()}">
+                    <td>Si</td>
+                </div>
+                <div th:unless="${BookingDetalles.isFreeCancelation()}">
+                    <td>No</td>
+                </div>
+                <div th:if="${BookingDetalles.isParking()}">
+                    <td>Si</td>
+                </div>
+                <div th:unless="${BookingDetalles.isParking()}">
+                    <td>No</td>
+                </div>
+                <td th:text="${BookingDetalles.getCheckIn()}">Check in</td>
+                <td th:text="${BookingDetalles.getCheckOut()}">Check out</td>
+                <td th:text="${BookingDetalles.getCreatedAt()}">Created at</td>
+            </tr>
+            </tbody>
+        </table>
+        <td>
+            <a th:href="@{/Bookings/ConsultaReservas}" class="btn btn-info">Volver al listado</a>
+        </td>
+    </div>
+</div>
+
+
+</body>
+</html>

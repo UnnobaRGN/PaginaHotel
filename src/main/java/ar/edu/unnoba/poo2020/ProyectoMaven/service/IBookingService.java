@@ -8,4 +8,6 @@ import java.util.List;
 public interface IBookingService {
     Booking newBooking(Booking booking) throws Exception;
     public List<Booking> listarReservas(Long id);
+    public  Booking findBooking(Long id);
+    public void delete(Long id);
 }

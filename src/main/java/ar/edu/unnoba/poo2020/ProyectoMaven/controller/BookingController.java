@@ -148,4 +148,33 @@ public class BookingController {
         return "Bookings/consultarReserva";
     }
 
+
+    @GetMapping("/{id}/detalles")
+    public String verDetalles(@PathVariable Long id,Model model,Authentication auth){
+        if(auth != null) {
+            User u = (User) auth.getPrincipal();
+            model.addAttribute("firstName", u.getFirstName());
+            model.addAttribute("lastName", u.getLastName());
+            Booking booking=bookingService.findBooking(id);
+            model.addAttribute("BookingDetalles",booking);
+        }
+        return "Bookings/detalles";
+
+    }
+
+
+
+
+
+
+
+
+
+    @GetMapping("/cancelar/{id}")
+    public String cancelarReserva(@PathVariable Long id, Model model){
+        bookingService.delete(id);
+        return "redirect:/consultaReserva";
+
+    }
+
 }

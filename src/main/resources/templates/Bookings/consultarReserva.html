@@ -15,75 +15,84 @@
     <link rel="stylesheet" href="../css/style.css">
 </head>
     <body>
-    <div class="container">
-        <nav class="nav-main">
-            <a href="/Users">
-                <img src="../img/logo.jpg" alt="logo-hotel" class="nav-brand">
-            </a>
-            <ul class="nav-menu">
+            <nav class="nav-main">
+                <a href="/Users">
+                    <img src="../img/logo.jpg" alt="logo-hotel" class="nav-brand">
+                </a>
+                <ul class="nav-menu">
 
-                <li>
-                    <a href="/Bookings/availability">
-                        Reservar habitacion
-                    </a>
-                </li>
+                    <li>
+                        <a href="/Bookings/availability">
+                            Reservar habitacion
+                        </a>
+                    </li>
 
-                <li>
-                    <a href="#">
-                        Nuestras habitaciones
-                    </a>
-                </li>
+                    <li>
+                        <a href="#">
+                            Nuestras habitaciones
+                        </a>
+                    </li>
 
-                <li>
-                    <a href="#">
-                        Quienes somos
-                    </a>
-                </li>
-                <li>
-                    <a href="/Bookings/ConsultaReservas">
-                        Consultá tus reservas!
-                    </a>
-                </li>
+                    <li>
+                        <a href="#">
+                            Quienes somos
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/Bookings/ConsultaReservas">
+                            Consultá tus reservas!
+                        </a>
+                    </li>
 
-            </ul>
+                </ul>
 
-            <ul class="nav-regis">
+                <ul class="nav-regis">
 
-                <li>
-                    <a><label   id="Users" th:text ="${firstName} + ' ' + ${lastName}" > </label></a>
+                    <li>
+                        <a><label   id="Users" th:text ="${firstName} + ' ' + ${lastName}" > </label></a>
 
-                </li>
-                <li>
-                    <a href="/logout" methods="post" th:action="@{/logout}">
-                        Logout
-                    </a>
-                </li>
-            </ul>
-        </nav>
-    </div>
-
-    <div>
-        <table class="tabla">
-            <thead>
-            <tr>
-                <th>Check In: </th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:if="${listaReservas.empty}">
-                <td colspan="4">No hay reservas echas!</td>
-            </tr>
-            <tr th:each="reservas: ${listaReservas}">
-                <td><span th:text="${reservas.checkIn}">Check in: </span></td>
-                <button type="submit" class="btn btn-info">Detalle</button>
-                <button type="submit" class="btn btn-danger">Cancelar</button>
-            </tr>
-            </tbody>
-        </table>
-    </div>
+                    </li>
+                    <li>
+                        <a href="/logout" methods="post" th:action="@{/logout}">
+                            Logout
+                        </a>
+                    </li>
+                </ul>
+            </nav>
 
 
+        <div align="center" >
+            <br>
+            <h1 class="tit">Mis Reservas</h1>
+            <div class="container mt-4">
+                <table class="table table-bordered table-dark table-sm">
+                    <thead>
+                    <tr>
+                        <th>Check In</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:if="${listaReservas.empty}">
+                        <td colspan="4">No hay reservas echas!</td>
+                    </tr>
+                    <tr th:each="reservas: ${listaReservas}">
+                        <td th:text="${reservas.checkIn}">Check in</td>
+                        <td>
+                            <a th:href="@{/Bookings/{id}/detalles(id=${reservas.getId()})}" class="btn btn-info">Detalles</a>
+                            <a th:onclick="elim([[${reservas.id}]])" class="btn btn-danger">Eliminar</a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
 
+
+    <script src="https://code.jquery.com/jquery-3.5.1.js"
+            integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+            crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../fun.js"></script>
 
     </body>
 </html>

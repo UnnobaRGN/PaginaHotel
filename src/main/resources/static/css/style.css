@@ -33,6 +33,8 @@ ul{
     align-items: center;
     height: 60px;
     padding: 20px 0;
+    background-color: #399681;
+
 }
 
 .nav-brand{
@@ -60,7 +62,6 @@ ul{
 }
 
 .nav-regis{
-
 }
 
 
@@ -103,6 +104,10 @@ ul{
     text-decoration: underline beige;
 }
 
+.table{
+    border-spacing: 15px;
+    text-align: center;
+}
 
 
 

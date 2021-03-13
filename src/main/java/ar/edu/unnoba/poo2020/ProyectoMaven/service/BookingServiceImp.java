@@ -40,6 +40,17 @@ public class BookingServiceImp implements IBookingService{
         return bookingRepository.getBookingById(id);
     }
 
+    @Override
+    public Booking findBooking(Long id) {
+        return bookingRepository.findById(id).get();
+    }
+
+    @Override
+    public void delete(Long id) {
+        bookingRepository.deleteById(id);
+    }
+
+
     public float calcularCostoTotal(Booking booking){
         float total=booking.getRoom().getPrice() ;
         if(booking.isBreakfastIncluded()){

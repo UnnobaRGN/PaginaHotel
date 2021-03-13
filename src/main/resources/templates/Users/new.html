@@ -11,7 +11,6 @@
 </head>
 
 <body>
-        <div class="container">
             <nav class="nav-main">
                 <a href="/Users">
                     <img src="../img/logo.jpg" alt="logo-hotel" class="nav-brand">
@@ -45,46 +44,46 @@
 
                 
             </nav>
+            <br>
+            <div class="container">
+                <div class="titulo">
+                <h1 align="center" >Crear tu cuenta de HotelPOO</h1>
+                    <h3 align="center" th:text="${texto}" id="texto" style="color: red;background-color: white"></h3>
+                    <div align="center">
+                        <form action="#" th:action="@{/Users}" th:object="${user}" method="post">
+                            <div class="form-group">
+                                Nombre:
+                                <input type="text" required th:field="*{firstName}" class="form-control col-sm-3"/>
+                            </div>
+                            <div class="form-group">
+                                Apellido:
+                                <input type="text"  required th:field="*{lastName}" class="form-control col-sm-3">
+                            </div>
 
-            <div class="titulo">
-                <br>
-            <h1 align="center" >Crear tu cuenta de HotelPOO</h1>
-                <h3 align="center" th:text="${texto}" id="texto" style="color: red;background-color: white"></h3>
-                <div align="center">
-                    <form action="#" th:action="@{/Users}" th:object="${user}" method="post">
-                        <div class="form-group">
-                            Nombre:
-                            <input type="text" required th:field="*{firstName}" class="form-control col-sm-3"/>
-                        </div>
-                        <div class="form-group">
-                            Apellido:
-                            <input type="text"  required th:field="*{lastName}" class="form-control col-sm-3">
-                        </div>
+                            <div class="form-group">
+                                Email:
+                                <input type="email" required th:field="*{email}" class="form-control col-sm-3">
+                            </div>
+                            <div class="form-group">
+                                Fecha de nacimiento:
+                                <input type="date" required th:field="*{birthDate}" class="form-control col-sm-3">
+                            </div>
+                            <div class="form-group">
+                                Nacionalidad:
+                                <input type="text" required th:field="*{nationality}" class="form-control col-sm-3">
+                            </div>
 
-                        <div class="form-group">
-                            Email:
-                            <input type="email" required th:field="*{email}" class="form-control col-sm-3">
-                        </div>
-                        <div class="form-group">
-                            Fecha de nacimiento:
-                            <input type="date" required th:field="*{birthDate}" class="form-control col-sm-3">
-                        </div>
-                        <div class="form-group">
-                            Nacionalidad:
-                            <input type="text" required th:field="*{nationality}" class="form-control col-sm-3">
-                        </div>
+                            <div class="form-group">
+                                Contraseña:
+                                <input type="password" required th:field="*{password}" class="form-control col-sm-3">
+                            </div>
 
-                        <div class="form-group">
-                            Contraseña:
-                            <input type="password" required th:field="*{password}" class="form-control col-sm-3">
-                        </div>
+                            <button type="submit" class="btn btn-success">Crear</button>
 
-                        <button type="submit" class="btn btn-success">Create</button>
-
-                    </form>
+                        </form>
+                    </div>
                 </div>
             </div>
-        </div>
 </body>
 
 </html>
