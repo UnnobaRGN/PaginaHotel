@@ -54,7 +54,8 @@ public class UserController {
         if(userService.create(user)) {
             return "redirect:/Users";
         }else{
-            model.addAttribute("texto", "ya existe un usuario con ese email");
+            //model.addAttribute("texto", "ya existe un usuario con ese email");
+            model.addAttribute("mensaje","");
             return "Users/new";
         }
     }
