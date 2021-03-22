@@ -18,7 +18,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -52,27 +54,41 @@ public class BookingController {
     }
 
     @PostMapping("/availability")
-    public String getRoomsAvailable(@ModelAttribute RoomsAvailabilityDTO roomsAvailabilityDTO, Model model,Authentication auth){
-        List<Room> rooms=new ArrayList<>();
-        try {
-            rooms = roomService.getRoomsAvailable(
-                roomsAvailabilityDTO.getCheckInDateConverted(),
-                roomsAvailabilityDTO.getCheckOutDateConverted(),
-                roomsAvailabilityDTO.getOccupancy());
+    public String getRoomsAvailable(@ModelAttribute RoomsAvailabilityDTO roomsAvailabilityDTO, Model model,Authentication auth) throws ParseException {
+        if(bookingService.VerificarFechas(roomsAvailabilityDTO.getCheckInDateConverted(),roomsAvailabilityDTO.getCheckOutDateConverted())) {
+            if(auth != null) {
+                User u = (User) auth.getPrincipal();
+                model.addAttribute("firstName", u.getFirstName());
+                model.addAttribute("lastName", u.getLastName());
+            }
+            model.addAttribute("roomsAvailability", new RoomsAvailabilityDTO());
+            model.addAttribute("rooms",new ArrayList<RoomDTO>());
+            model.addAttribute("mensaje","");
+            return "Bookings/availability";
 
-        }catch (Exception e){}
-        List<RoomDTO> roomDTO = rooms.stream()
-                .map(room -> modelMapper.map(room,RoomDTO.class))
-                .collect(Collectors.toList());
-        if(auth != null) {
-            User u = (User) auth.getPrincipal();
-            model.addAttribute("firstName", u.getFirstName());
-            model.addAttribute("lastName", u.getLastName());
+        }else{
+            List<Room> rooms = new ArrayList<>();
+            try {
+                rooms = roomService.getRoomsAvailable(
+                        roomsAvailabilityDTO.getCheckInDateConverted(),
+                        roomsAvailabilityDTO.getCheckOutDateConverted(),
+                        roomsAvailabilityDTO.getOccupancy());
+
+            } catch (Exception e) {
+            }
+            List<RoomDTO> roomDTO = rooms.stream()
+                    .map(room -> modelMapper.map(room, RoomDTO.class))
+                    .collect(Collectors.toList());
+            if (auth != null) {
+                User u = (User) auth.getPrincipal();
+                model.addAttribute("firstName", u.getFirstName());
+                model.addAttribute("lastName", u.getLastName());
+            }
+            model.addAttribute("rooms", roomDTO);
+            model.addAttribute("roomsAvailability", roomsAvailabilityDTO);
+            model.addAttribute("Booking", new NewBookingRequestDTO());
+            return "Bookings/availability";
         }
-        model.addAttribute("rooms",roomDTO);
-        model.addAttribute("roomsAvailability",roomsAvailabilityDTO);
-        model.addAttribute("Booking", new NewBookingRequestDTO());
-        return "Bookings/availability";
     }
 
     @PostMapping("/new")

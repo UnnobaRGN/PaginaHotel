@@ -24,9 +24,6 @@ public class BookingServiceImp implements IBookingService{
         booking.setRoom(roomRepository.findById(booking.getRoom().getId()).get());
         booking.setCost(calcularCostoTotal(booking));
         booking.setCreatedAt(new Date());
-         if(booking.getCheckIn().before(new Date()) || booking.getCheckIn().after(booking.getCheckOut())){
-             throw new Exception("");
-        }
          Room room = roomRepository.isRoomAvailable(booking.getCheckIn(),booking.getCheckOut(),booking.getRoom().getId());
          if(room!=null) {
              return booking = bookingRepository.save(booking);
@@ -48,6 +45,12 @@ public class BookingServiceImp implements IBookingService{
     @Override
     public void delete(Long id) {
         bookingRepository.deleteById(id);
+    }
+
+    @Override
+    public boolean VerificarFechas(Date checkin, Date checkout) {
+        return checkin.before(new Date()) || checkin.after(checkout);
+
     }
 
 

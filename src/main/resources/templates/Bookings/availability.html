@@ -68,6 +68,9 @@
                 <br>
                 <h1 class="tit">Disponibilidad de Habitaciones</h1>
                 <br>
+                <div  th:if="${mensaje}" class="alert alert-danger" role="alert">
+                    Por favor!, ingrese <strong> fechas </strong> correctas!
+                </div>
                 <form id="form1" name="form1" action="#" th:action="@{/Bookings/availability}" th:object="${roomsAvailability}" method="post">
 
                     <label id="lbl1" name="lbl1">Check in:</label>
