@@ -81,7 +81,7 @@
             <tbody>
             <tr th:object="${BookingDetalles}">
                 <td th:text="${BookingDetalles.getRoom().getName()}">Nombre</td>
-                <td th:text="${BookingDetalles.getCost()}">Costo</td>
+                <td th:text="${BookingDetalles.getCost()}+'$'">Costo</td>
                 <div th:if="${BookingDetalles.isBreakfastIncluded()}">
                     <td>Si</td>
                 </div>
@@ -100,9 +100,9 @@
                 <div th:unless="${BookingDetalles.isParking()}">
                     <td>No</td>
                 </div>
-                <td th:text="${BookingDetalles.getCheckIn()}">Check in</td>
-                <td th:text="${BookingDetalles.getCheckOut()}">Check out</td>
-                <td th:text="${BookingDetalles.getCreatedAt()}">Created at</td>
+                <td th:text="${#dates.format(BookingDetalles.getCheckIn(),'dd-MMM-yyyy')}">Check in</td>
+                <td th:text="${#dates.format(BookingDetalles.getCheckOut(),'dd-MMM-yyyy')}">Check out</td>
+                <td th:text="${#dates.format(BookingDetalles.getCreatedAt(),'dd-MMM-yyyy')}">Created at</td>
             </tr>
             </tbody>
         </table>

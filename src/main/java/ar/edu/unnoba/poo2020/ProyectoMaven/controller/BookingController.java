@@ -18,8 +18,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.awt.print.Book;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -196,10 +198,34 @@ public class BookingController {
 
 
     @GetMapping("/cancelar/{id}")
-    public String cancelarReserva(@PathVariable Long id, Model model){
-        bookingService.delete(id);
-        return "redirect:/consultaReserva";
+    public String cancelarReserva(@PathVariable Long id, Model model,Authentication auth){
+        Booking booking = bookingService.findBooking(id);
+        List<Payment> payment = paymentService.findByBookingId(booking.getId());
+        if(bookingService.VerificarCancelacion(booking.getCheckIn())){
+            paymentService.deletePayment(payment.get(0).getId());
+            bookingService.delete(id);
+            if(auth != null) {
+                User u = (User) auth.getPrincipal();
+                model.addAttribute("firstName", u.getFirstName());
+                model.addAttribute("lastName", u.getLastName());
+                List<Booking> Reservabookings = bookingService.listarReservas(u.getId());
+                model.addAttribute("listaReservas",Reservabookings);
+                model.addAttribute("mensaje2","se ha eliminado la reserva satisfactoriamente!");
+            }
+            return "Bookings/consultarReserva";
+        }
+        else {
+            if(auth != null) {
+                User u = (User) auth.getPrincipal();
+                model.addAttribute("firstName", u.getFirstName());
+                model.addAttribute("lastName", u.getLastName());
+                List<Booking> Reservabookings = bookingService.listarReservas(u.getId());
+                model.addAttribute("listaReservas",Reservabookings);
+                model.addAttribute("mensaje1","no se puede eliminar la reserva!");
+            }
+            return "Bookings/consultarReserva";
 
+        }
     }
 
 }

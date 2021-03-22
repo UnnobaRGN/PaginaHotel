@@ -31,5 +31,4 @@ public class PaymentDTO {
         this.cardNumber = cardNumber;
     }
 
-
 }

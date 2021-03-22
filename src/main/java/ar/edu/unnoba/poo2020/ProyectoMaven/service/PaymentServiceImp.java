@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.List;
 
 @Service
 public class PaymentServiceImp implements IPaymentService {
@@ -17,5 +18,15 @@ public class PaymentServiceImp implements IPaymentService {
         p.setCreatedAt(new Date());
         return paymentRepository.save(p);
 
+    }
+
+    @Override
+    public void deletePayment(Long p) {
+        paymentRepository.deleteById(p);
+    }
+
+    @Override
+    public List<Payment> findByBookingId(Long id) {
+        return paymentRepository.getPaymentById(id);
     }
 }

@@ -53,6 +53,14 @@ public class BookingServiceImp implements IBookingService{
 
     }
 
+    @Override
+    public boolean VerificarCancelacion(Date checkIn) {
+        Date actual = new Date();
+        Long diferencia = checkIn.getTime()-actual.getTime(); //se saca la diferencia entre la fecha de checkin con la fecha actual
+                                                                //verificando si hay 2 dias o mas de diferencia
+        return(diferencia>172800000); //Son milisegundos que pasan en 48 hs!
+    }
+
 
     public float calcularCostoTotal(Booking booking){
         float total=booking.getRoom().getPrice() ;

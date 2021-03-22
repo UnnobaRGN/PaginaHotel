@@ -12,4 +12,5 @@ public interface IBookingService {
     public  Booking findBooking(Long id);
     public void delete(Long id);
     boolean VerificarFechas(Date checkin, Date checkout);
+    boolean VerificarCancelacion(Date checkIn);
 }
