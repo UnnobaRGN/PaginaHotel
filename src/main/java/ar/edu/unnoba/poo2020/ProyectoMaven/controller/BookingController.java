@@ -190,13 +190,7 @@ public class BookingController {
     }
 
 
-
-
-
-
-
-
-
+    
     @GetMapping("/cancelar/{id}")
     public String cancelarReserva(@PathVariable Long id, Model model,Authentication auth){
         Booking booking = bookingService.findBooking(id);
@@ -211,6 +205,7 @@ public class BookingController {
                 List<Booking> Reservabookings = bookingService.listarReservas(u.getId());
                 model.addAttribute("listaReservas",Reservabookings);
                 model.addAttribute("mensaje2","");
+                model.addAttribute("BookingReserva",booking);
             }
         }
         else {

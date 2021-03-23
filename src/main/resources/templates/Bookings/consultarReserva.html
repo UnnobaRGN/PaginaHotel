@@ -68,6 +68,15 @@
                 <button class="close" data-dismiss="alert"><span>&times;</span></button>
                         No se puede eliminar la reserva!
             </div>
+            <div  th:if="${BookingReserva}" class="alert alert-success alert-dismissible fade show" >
+                <button class="close" data-dismiss="alert"><span>&times;</span></button>
+                <div th:if="${BookingReserva.isFreeCancelation()}">
+                        Se te ha reintegrado el 100% del costo de la reserva
+                </div>
+                <div th:unless="${BookingReserva.isFreeCancelation()}">
+                        Se te ha reintegrado el 80% del costo de la reserva
+                </div>
+            </div>
             <div  th:if="${mensaje2}" class="alert alert-success alert-dismissible fade show" >
                 <button class="close" data-dismiss="alert"><span>&times;</span></button>
                         Se ha eliminado la reserva satisfactoriamente!
