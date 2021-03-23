@@ -64,9 +64,14 @@
         <div align="center" >
             <br>
             <h1 class="tit">Mis Reservas</h1>
-            <div  th:if="${mensaje1}" class="alert alert-danger" th:text="${mensaje1}" role="alert"></div>
-            <div  th:if="${mensaje2}" class="alert alert-success" th:text="${mensaje2}" role="alert"></div>
-
+            <div  th:if="${mensaje1}" class="alert alert-danger alert-dismissible fade show">
+                <button class="close" data-dismiss="alert"><span>&times;</span></button>
+                        No se puede eliminar la reserva!
+            </div>
+            <div  th:if="${mensaje2}" class="alert alert-success alert-dismissible fade show" >
+                <button class="close" data-dismiss="alert"><span>&times;</span></button>
+                        Se ha eliminado la reserva satisfactoriamente!
+            </div>
             <div class="container mt-4">
                 <table class="table table-bordered table-dark table-sm">
                     <thead>
@@ -91,8 +96,8 @@
         </div>
 
 
-    <script src="https://code.jquery.com/jquery-3.5.1.js"
-            integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
-            crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     </body>
 </html>

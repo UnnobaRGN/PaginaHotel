@@ -210,9 +210,8 @@ public class BookingController {
                 model.addAttribute("lastName", u.getLastName());
                 List<Booking> Reservabookings = bookingService.listarReservas(u.getId());
                 model.addAttribute("listaReservas",Reservabookings);
-                model.addAttribute("mensaje2","se ha eliminado la reserva satisfactoriamente!");
+                model.addAttribute("mensaje2","");
             }
-            return "Bookings/consultarReserva";
         }
         else {
             if(auth != null) {
@@ -221,11 +220,11 @@ public class BookingController {
                 model.addAttribute("lastName", u.getLastName());
                 List<Booking> Reservabookings = bookingService.listarReservas(u.getId());
                 model.addAttribute("listaReservas",Reservabookings);
-                model.addAttribute("mensaje1","no se puede eliminar la reserva!");
+                model.addAttribute("mensaje1","");
             }
-            return "Bookings/consultarReserva";
 
         }
+        return "Bookings/consultarReserva";
     }
 
 }
