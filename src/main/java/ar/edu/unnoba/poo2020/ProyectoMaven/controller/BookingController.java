@@ -217,10 +217,10 @@ public class BookingController {
     public String cancelarConfrimado(@PathVariable Long id, Model model,Authentication auth){
         Cancellation cancellation = cancelationService.findCancellation(id);
         Booking booking = cancellation.getBooking();
-        List<Payment> payment = paymentService.findByBookingId(booking.getId());
+        Payment payment = paymentService.findByBookingId(booking.getId());
         if(bookingService.VerificarCancelacion(booking.getCheckIn())) {
             cancelationService.delete(id);
-            paymentService.deletePayment(payment.get(0).getId());
+            paymentService.deletePayment(payment.getId());
             bookingService.delete(booking.getId());
             if (auth != null) {
                 User u = (User) auth.getPrincipal();

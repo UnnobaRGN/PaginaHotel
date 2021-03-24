@@ -26,7 +26,7 @@ public class PaymentServiceImp implements IPaymentService {
     }
 
     @Override
-    public List<Payment> findByBookingId(Long id) {
+    public Payment findByBookingId(Long id) {
         return paymentRepository.getPaymentById(id);
     }
 }

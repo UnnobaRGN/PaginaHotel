@@ -7,5 +7,5 @@ import java.util.List;
 public interface IPaymentService {
     public Payment savePayment(Payment p);
     public void deletePayment(Long p);
-    public List<Payment> findByBookingId(Long id);
+    public Payment findByBookingId(Long id);
 }
