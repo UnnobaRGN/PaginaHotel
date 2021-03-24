@@ -4,7 +4,7 @@ package ar.edu.unnoba.poo2020.ProyectoMaven.model;
 import com.sun.istack.NotNull;
 
 import javax.persistence.*;
-import java.sql.Date;
+import java.util.Date;
 import java.util.List;
 
 @Entity

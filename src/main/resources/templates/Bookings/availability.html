@@ -5,6 +5,7 @@
     <title>Reserva tu habitacion</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
     <!--FONT OSWALD-->
     <style>
@@ -68,7 +69,8 @@
                 <br>
                 <h1 class="tit">Disponibilidad de Habitaciones</h1>
                 <br>
-                <div  th:if="${mensaje}" class="alert alert-danger" role="alert">
+                <div  th:if="${mensaje}" class="alert alert-danger alert-dismissible fade show" >
+                    <button class="close" data-dismiss="alert"><span>&times;</span></button>
                     Por favor!, ingrese <strong> fechas </strong> correctas!
                 </div>
                 <form id="form1" name="form1" action="#" th:action="@{/Bookings/availability}" th:object="${roomsAvailability}" method="post">
@@ -86,8 +88,13 @@
                 </form>
 
                 <br>
+                <div th:if="${rooms.empty}">
+                    Por favor, seleccione fechas para el check in y el check out,<br>
+                    si ha seleccionado fechas y no se muestra ninguna habitacion, es probable
+                    que todas las habitaciones esten reservadas
+                </div>
                 <div class="container">
-                    <table class="table table-bordered table-dark table-sm">
+                    <table th:if="${rooms.size()>0}" class="table table-bordered table-dark table-sm">
                         <thead>
                             <tr>
                                 <th>Habitacion</th>
@@ -97,9 +104,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr th:if="${rooms.empty}">
-                                <td colspan="4"> No hay habitaciones disponibles!</td>
-                            </tr>
+
                             <tr th:each="room: ${rooms}">
                                 <td><span th:text="${room.name}">Room </span></td>
                                 <td><span th:text="${room.occupancy}">Occupancy</span></td>
@@ -119,7 +124,9 @@
                     </table>
                 </div>
             </div>
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </body>
 
 </html>

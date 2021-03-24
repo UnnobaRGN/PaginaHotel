@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Mis Reservas</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    <!--FONT OSWALD-->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400&display=swap');
+    </style>
+    <!--CUSTOM CSS-->
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<nav class="nav-main">
+    <a href="/Users">
+        <img src="/img/logo.jpg" alt="logo-hotel" class="nav-brand">
+    </a>
+    <ul class="nav-menu">
+
+        <li>
+            <a href="/Bookings/availability">
+                Reservar habitacion
+            </a>
+        </li>
+
+        <li>
+            <a href="#">
+                Nuestras habitaciones
+            </a>
+        </li>
+
+        <li>
+            <a href="#">
+                Quienes somos
+            </a>
+        </li>
+        <li>
+            <a href="/Bookings/ConsultaReservas">
+                Consultá tus reservas!
+            </a>
+        </li>
+
+    </ul>
+
+    <ul class="nav-regis">
+
+        <li>
+            <a><label   id="Users" th:text ="${firstName} + ' ' + ${lastName}" > </label></a>
+
+        </li>
+        <li>
+            <a href="/logout" methods="post" th:action="@{/logout}">
+                Logout
+            </a>
+        </li>
+    </ul>
+</nav>
+
+
+<div align="center" >
+    <br>
+    <h1 class="tit">Cancelar Reserva</h1>
+    <div  th:if="${mensaje1}" class="alert alert-danger alert-dismissible fade show">
+        <button class="close" data-dismiss="alert"><span>&times;</span></button>
+        No se puede cancelar la reserva!
+    </div>
+    <div  th:if="${BookingReserva}" class="alert alert-success alert-dismissible fade show" >
+        <button class="close" data-dismiss="alert"><span>&times;</span></button>
+        <div th:if="${BookingReserva.isFreeCancelation()}">
+            Se te ha reintegrado el 100% del costo de la reserva
+        </div>
+        <div th:unless="${BookingReserva.isFreeCancelation()}">
+            Se te ha reintegrado el 80% del costo de la reserva
+        </div>
+    </div>
+    <div  th:if="${mensaje2}" class="alert alert-success alert-dismissible fade show" >
+        <button class="close" data-dismiss="alert"><span>&times;</span></button>
+        Se ha cancelado la reserva satisfactoriamente!
+    </div>
+    <div class="container mt-4">
+
+        <div th:if="${cancelation}">
+           <h3>Cancelacion a realizar el dia: <span th:text="${#dates.format(cancelation.getCreatedAt(),'dd-MMM-yyyy')}"></span></h3>
+            <br>
+            <a th:href="@{/Bookings/cancelarConfirmado/{id}(id=${cancelation.getId()})}" class="btn btn-danger">Confirmar cancelacion</a>
+        </div>
+    </div>
+        <br>
+        <a href="/Bookings/ConsultaReservas" class="btn btn-primary" >Volver al listado</a>
+
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>

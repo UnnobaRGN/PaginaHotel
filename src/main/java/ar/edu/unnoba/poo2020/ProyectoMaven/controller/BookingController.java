@@ -1,11 +1,9 @@
 package ar.edu.unnoba.poo2020.ProyectoMaven.controller;
 
 import ar.edu.unnoba.poo2020.ProyectoMaven.DTO.*;
-import ar.edu.unnoba.poo2020.ProyectoMaven.model.Booking;
-import ar.edu.unnoba.poo2020.ProyectoMaven.model.Payment;
-import ar.edu.unnoba.poo2020.ProyectoMaven.model.Room;
-import ar.edu.unnoba.poo2020.ProyectoMaven.model.User;
+import ar.edu.unnoba.poo2020.ProyectoMaven.model.*;
 import ar.edu.unnoba.poo2020.ProyectoMaven.service.IBookingService;
+import ar.edu.unnoba.poo2020.ProyectoMaven.service.ICancelationService;
 import ar.edu.unnoba.poo2020.ProyectoMaven.service.IPaymentService;
 import ar.edu.unnoba.poo2020.ProyectoMaven.service.IRoomService;
 
@@ -29,18 +27,21 @@ import java.util.stream.Collectors;
 @Controller
 @RequestMapping("/Bookings")
 @SessionAttributes("Booking2")
+
 public class BookingController {
     private IRoomService roomService;
     private IBookingService bookingService;
     private ModelMapper modelMapper;
     private IPaymentService paymentService;
+    private ICancelationService cancelationService;
 
     @Autowired
-    public BookingController(IRoomService roomService, IBookingService bookingService,ModelMapper modelMapper,IPaymentService paymentService) {
+    public BookingController(IRoomService roomService, IBookingService bookingService, ModelMapper modelMapper, IPaymentService paymentService, ICancelationService cancelationService) {
         this.roomService = roomService;
         this.bookingService = bookingService;
         this.modelMapper = modelMapper;
         this.paymentService = paymentService;
+        this.cancelationService = cancelationService;
     }
 
     @GetMapping("/availability")
@@ -192,8 +193,81 @@ public class BookingController {
 
     
     @GetMapping("/cancelar/{id}")
-    public String cancelarReserva(@PathVariable Long id, Model model,Authentication auth){
-        Booking booking = bookingService.findBooking(id);
+    public String cancelarReserva(@PathVariable Long id, Model model,Authentication auth) {
+        if(auth != null) {
+            User u = (User) auth.getPrincipal();
+            model.addAttribute("firstName", u.getFirstName());
+            model.addAttribute("lastName", u.getLastName());
+            Booking booking = bookingService.findBooking(id);
+            if(cancelationService.findCancellationByBooking(booking.getId())!=null){
+                Cancellation cancelation = cancelationService.findCancellationByBooking(booking.getId());
+                model.addAttribute("cancelation", cancelation);
+            }else {
+                Cancellation cancelation = new Cancellation();
+                cancelation.setBooking(booking);
+                cancelationService.cancelarReserva(cancelation);
+                model.addAttribute("cancelation", cancelation);
+            }
+        }
+        return "Bookings/cancelarReserva";
+    }
+
+
+    @GetMapping("/cancelarConfirmado/{id}")
+    public String cancelarConfrimado(@PathVariable Long id, Model model,Authentication auth){
+        Cancellation cancellation = cancelationService.findCancellation(id);
+        Booking booking = cancellation.getBooking();
+        List<Payment> payment = paymentService.findByBookingId(booking.getId());
+        if(bookingService.VerificarCancelacion(booking.getCheckIn())) {
+            cancelationService.delete(id);
+            paymentService.deletePayment(payment.get(0).getId());
+            bookingService.delete(booking.getId());
+            if (auth != null) {
+                User u = (User) auth.getPrincipal();
+                model.addAttribute("firstName", u.getFirstName());
+                model.addAttribute("lastName", u.getLastName());
+                model.addAttribute("mensaje2", "");
+                model.addAttribute("BookingReserva", booking);
+            }
+        }else {
+            if(auth != null) {
+                User u = (User) auth.getPrincipal();
+                model.addAttribute("firstName", u.getFirstName());
+                model.addAttribute("lastName", u.getLastName());
+                model.addAttribute("mensaje1","");
+                model.addAttribute("cancelation",cancellation);
+            }
+
+        }
+
+            return "Bookings/cancelarReserva";
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        /*
+
         List<Payment> payment = paymentService.findByBookingId(booking.getId());
         if(bookingService.VerificarCancelacion(booking.getCheckIn())){
             paymentService.deletePayment(payment.get(0).getId());
@@ -221,5 +295,5 @@ public class BookingController {
         }
         return "Bookings/consultarReserva";
     }
-
+*/
 }

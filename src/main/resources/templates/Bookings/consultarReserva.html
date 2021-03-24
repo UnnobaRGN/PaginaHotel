@@ -64,24 +64,11 @@
         <div align="center" >
             <br>
             <h1 class="tit">Mis Reservas</h1>
-            <div  th:if="${mensaje1}" class="alert alert-danger alert-dismissible fade show">
-                <button class="close" data-dismiss="alert"><span>&times;</span></button>
-                        No se puede eliminar la reserva!
+            <div th:if="${listaReservas.empty}">
+               No se encuentran reservas!
             </div>
-            <div  th:if="${BookingReserva}" class="alert alert-success alert-dismissible fade show" >
-                <button class="close" data-dismiss="alert"><span>&times;</span></button>
-                <div th:if="${BookingReserva.isFreeCancelation()}">
-                        Se te ha reintegrado el 100% del costo de la reserva
-                </div>
-                <div th:unless="${BookingReserva.isFreeCancelation()}">
-                        Se te ha reintegrado el 80% del costo de la reserva
-                </div>
-            </div>
-            <div  th:if="${mensaje2}" class="alert alert-success alert-dismissible fade show" >
-                <button class="close" data-dismiss="alert"><span>&times;</span></button>
-                        Se ha eliminado la reserva satisfactoriamente!
-            </div>
-            <div class="container mt-4">
+
+            <div th:if="${listaReservas.size()>0}" class="container mt-4">
                 <table class="table table-bordered table-dark table-sm">
                     <thead>
                     <tr>
@@ -96,12 +83,13 @@
                         <td th:text="${#dates.format(reservas.checkIn,'dd-MMM-yyyy')}">Check in</td>
                         <td>
                             <a th:href="@{/Bookings/{id}/detalles(id=${reservas.getId()})}" class="btn btn-info">Detalles</a>
-                            <a th:href="@{/Bookings/cancelar/{id}(id=${reservas.getId()})}" class="btn btn-danger">Eliminar</a>
+                            <a th:href="@{/Bookings/cancelar/{id}(id=${reservas.getId()})}" class="btn btn-danger">Cancelar</a>
                         </td>
                     </tr>
                     </tbody>
                 </table>
             </div>
+            <a href="/Users" class="btn btn-primary" >Volver a inicio</a>
         </div>
 
 
