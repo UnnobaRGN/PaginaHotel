@@ -11,5 +11,5 @@ public interface ICancelationService {
     Cancellation findCancellation(Long id);
     void delete(Long id);
     Cancellation findCancellationByBooking(Long id);
-
+    void deleteAll();
 }

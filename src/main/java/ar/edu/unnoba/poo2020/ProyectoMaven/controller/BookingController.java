@@ -168,6 +168,7 @@ public class BookingController {
     @GetMapping("/ConsultaReservas")
     public String consultarReservas(Model model,Authentication auth){
         if(auth != null) {
+            cancelationService.deleteAll();
             User u = (User) auth.getPrincipal();
             model.addAttribute("firstName", u.getFirstName());
             model.addAttribute("lastName", u.getLastName());

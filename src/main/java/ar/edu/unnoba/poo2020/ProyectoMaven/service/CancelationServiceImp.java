@@ -36,4 +36,9 @@ public class CancelationServiceImp implements ICancelationService{
         return cancellationRepository.findByBookingId(id);
     }
 
+    @Override
+    public void deleteAll() {
+        cancellationRepository.deleteAll();
+    }
+
 }
