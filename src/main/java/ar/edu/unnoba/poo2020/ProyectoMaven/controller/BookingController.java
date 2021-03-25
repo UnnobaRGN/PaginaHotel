@@ -160,8 +160,9 @@ public class BookingController {
                 model.addAttribute("firstName", u.getFirstName());
                 model.addAttribute("lastName", u.getLastName());
             }
-            return "error/index";
+            return "error/500";
         }
+
     }
 
     @GetMapping("/ConsultaReservas")

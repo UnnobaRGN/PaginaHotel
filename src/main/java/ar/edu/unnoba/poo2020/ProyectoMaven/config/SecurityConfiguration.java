@@ -36,7 +36,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .and()
                 .formLogin();
         http.authorizeRequests()
-                .antMatchers("/*?","/Bookings/*")
+                .antMatchers("/Users","/Bookings/*")  //*?
                 .access("hasRole('ROLE_USER')");
 
 
