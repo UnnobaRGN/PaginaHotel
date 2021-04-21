@@ -28,4 +28,9 @@ public class RoomServiceImp implements  IRoomService {
 
     }
 
+    @Override
+    public List<Room> listar() {
+        return roomRepository.findAll();
+    }
+
 }

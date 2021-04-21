@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Reserva tu habitacion</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    <!--FONT OSWALD-->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400&display=swap');
+    </style>
+    <!--CUSTOM CSS-->
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<!--<img class="img-fondo" src="../../static/img/imagen-fondo.jpg" alt="imagen fondo">-->
+<nav class="nav-main">
+    <a href="/Users">
+        <img src="../img/logo.jpg" alt="logo-hotel" class="nav-brand">
+    </a>
+    <ul class="nav-menu">
+
+        <li>
+            <a href="/Bookings/availability">
+                Reservar habitacion
+            </a>
+        </li>
+
+        <li>
+            <a href="#">
+                Nuestras habitaciones
+            </a>
+        </li>
+
+        <li>
+            <a href="#">
+                Quienes somos
+            </a>
+        </li>
+        <li>
+            <a href="/Bookings/ConsultaReservas">
+                Consultá tus reservas!
+            </a>
+        </li>
+
+
+    </ul>
+    <ul class="nav-regis">
+        <li>
+            <a href="/Users/new">
+                Registrate
+            </a>
+        </li>
+
+    </ul>
+
+
+</nav>
+
+<div  align="center"  >
+    <br>
+    <h1 class="tit">Nuestras Habitaciones</h1>
+    <br>
+    <div class="container">
+        <table th:if="${rooms.size()>0}" class="table table-bordered table-dark table-sm">
+            <thead>
+            <tr>
+                <th>Habitacion</th>
+                <th>Ocupacion</th>
+                <th>Facilidades</th>
+                <th>Precio</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            <tr th:each="room: ${rooms}">
+                <td><span th:text="${room.name}">Room </span></td>
+                <td><span th:text="${room.occupancy}">Occupancy</span></td>
+                <td><span th:text="${room.facilities}">Facilities</span></td>
+                <td><span th:text="${room.price}+'$'">Price</span></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+
+</html>

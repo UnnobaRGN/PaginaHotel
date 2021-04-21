@@ -246,6 +246,14 @@ public class BookingController {
     }
 
 
+    @GetMapping("/VerHabitaciones")
+    public String verHabitaciones(Model model){
+        List<Room> rooms = roomService.listar();
+        model.addAttribute("rooms",rooms);
+        return "Bookings/verHabitaciones";
+
+    }
+
 
 
 

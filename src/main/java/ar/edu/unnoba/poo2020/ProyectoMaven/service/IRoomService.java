@@ -9,4 +9,5 @@ import java.util.Optional;
 public interface IRoomService {
     List<Room> getRoomsAvailable(Date checkIn, Date checkOut, int occupancy);
     Optional<Room> findby(Long roomId);
+    public List<Room> listar();
 }
